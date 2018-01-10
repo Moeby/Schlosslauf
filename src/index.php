@@ -3,7 +3,7 @@
 ?>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="screen.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/screen.css" />
 </head>
 <body>
 	
