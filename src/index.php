@@ -1,5 +1,5 @@
 <?php
-	require_once("login_functions.php");
+	require_once("sessionCheck.php");
 ?>
 <html>
 <head>
@@ -9,7 +9,7 @@
 	
 <div id="kopf"> 
   <?PHP
-    include "view/kopf.inc.php";
+    include "view/kopf.php";
   ?>
 </div>
   
@@ -29,7 +29,7 @@
 			include($_GET["inhalt_mitte"]);
 		}
 		else{
-			include("view/home.inc.php");
+			include("view/home.html");
 		}
 	}else{
 		include("view/login_form.php");
