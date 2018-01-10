@@ -1,4 +1,6 @@
 <?php
+require_once("sessionCheck.php");
+
 $siteRoot = "index.php?inhalt_mitte=";
 $menuStruct = array("Home" => array("root" => $siteRoot . "view\\home.html"),
     "Vorwort" => array("root" => $siteRoot . "view\\vorwort.html"),
