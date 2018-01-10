@@ -1,16 +1,18 @@
 <?php
-	require_once("sessionCheck.php");
+require_once 'sessionCheck.php';
 ?>
 <html>
 <head>
-<?php
-$css = "resources/css/screen.css";
+    <title>Schlosslauf</title>
+    <?php
+    $css = "resources/css/screen.css";
     if(file_exists($css)){
         echo '<link rel="stylesheet" type="text/css" href="'.$css.'" />';
     }else{
         echo '<link rel="stylesheet" type="text/css" href="../'.$css.'" />';
     }
-?>
+    ?>
+<meta charset="UTF-8">
 </head>
 <body>
 
