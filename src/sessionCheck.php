@@ -8,4 +8,3 @@ function isLoggedIn(){
 		return false;
 	}
 }
-?>

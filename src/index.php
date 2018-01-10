@@ -1,5 +1,5 @@
 <?php
-require_once("sessionCheck.php");
+require_once 'sessionCheck.php';
 ?>
 <html>
 <head>
@@ -11,14 +11,14 @@ require_once("sessionCheck.php");
 
 <div id="kopf">
     <?PHP
-    include "view/kopf.php";
+    include 'view/kopf.php';
     ?>
 </div>
 
 <div id="inhalt_links">
     <?PHP
     if (isLoggedIn()) {
-        include "view/navigation.inc.php";
+        include 'view/navigation.inc.php';
     }
     ?>
 </div>
@@ -27,13 +27,13 @@ require_once("sessionCheck.php");
 <div id="inhalt_mitte">
     <?PHP
     if (isLoggedIn()) {
-        if (isset($_GET["inhalt_mitte"])) {
-            include($_GET["inhalt_mitte"]);
+        if (isset($_GET['inhalt_mitte'])) {
+            include $_GET['inhalt_mitte'];
         } else {
-            include("view/home.html");
+            include 'view/home.html';
         }
     } else {
-        include("view/login_form.php");
+        include 'view/login_form.php';
     }
     ?>
 </div>

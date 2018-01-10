@@ -1,5 +1,5 @@
 <?php
-require_once("sessionCheck.php");
+require_once 'sessionCheck.php';
 ?>
 
 <br>
