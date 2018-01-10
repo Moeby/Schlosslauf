@@ -1,5 +1,16 @@
 <?php
-require_once("sessionCheck.php");
+if(!file_exists('sessionCheck.php')) {
+    require_once("../sessionCheck.php");
+    if(!$loggedIn) {
+        /*
+         * $loginForm = file_get_contents("../index.php");
+        $loginForm = str_replace("resources/css/screen.css", "../resources/css/screen.css", $loginForm);
+        echo $loginForm;
+        */
+        require_once ("../index.php");
+        die();
+    }
+}
 ?>
 
 <br>

@@ -3,20 +3,29 @@
 ?>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="resources/css/screen.css" />
+<?php
+$css = "resources/css/screen.css";
+    if(file_exists($css)){
+        echo '<link rel="stylesheet" type="text/css" href="'.$css.'" />';
+    }else{
+        echo '<link rel="stylesheet" type="text/css" href="../'.$css.'" />';
+    }
+?>
 </head>
 <body>
 	
 <div id="kopf"> 
   <?PHP
-    include "view/kopf.php";
+    //if($loggedIn) {
+        include "view/kopf.php";
+    //}
   ?>
 </div>
   
 <div id="inhalt_links">
     <?PHP
-	if(isLoggedIn()){
-		include "view/navigation.inc.php";
+	if($loggedIn){
+		include "view/navigation.php";
 	}
     ?>
 </div>
@@ -24,7 +33,7 @@
 			
 <div id="inhalt_mitte"> 
     <?PHP
-	if(isLoggedIn()){
+	if($loggedIn){
 		if(isset($_GET["inhalt_mitte"])){    
 			include($_GET["inhalt_mitte"]);
 		}
