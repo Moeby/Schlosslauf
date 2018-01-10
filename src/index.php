@@ -13,15 +13,13 @@ $css = "resources/css/screen.css";
 ?>
 </head>
 <body>
-	
-<div id="kopf"> 
+
+<div id="kopf">
   <?PHP
-    //if($loggedIn) {
-        include "view/kopf.php";
-    //}
+    include "view/kopf.php";
   ?>
 </div>
-  
+
 <div id="inhalt_links">
     <?PHP
 	if($loggedIn){
@@ -29,12 +27,12 @@ $css = "resources/css/screen.css";
 	}
     ?>
 </div>
-			
-			
-<div id="inhalt_mitte"> 
+
+
+<div id="inhalt_mitte">
     <?PHP
 	if($loggedIn){
-		if(isset($_GET["inhalt_mitte"])){    
+		if(isset($_GET["inhalt_mitte"])){
 			include($_GET["inhalt_mitte"]);
 		}
 		else{
@@ -43,8 +41,8 @@ $css = "resources/css/screen.css";
 	}else{
 		include("view/login_form.php");
 	}
-    ?>      
+    ?>
 </div>
-        
+
 </body>
 </html>
