@@ -24,5 +24,5 @@ if(isset($_POST["Englisch"])){
 
 fwrite($file,"\r\n\r\n");
 echo "Ihre Daten wurden erfolgreich gespeichert.";
-echo "<br><button><a href='index.php?inhalt_mitte=schlosslauf.php'>Zur&uuml;ck</a></button>";
+echo "<br><button><a href='../index.php?inhalt_mitte=schlosslauf.php'>Zur&uuml;ck</a></button>";
 ?>

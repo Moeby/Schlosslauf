@@ -9,14 +9,14 @@
 	
 <div id="kopf"> 
   <?PHP
-    include "kopf.inc.php";	
+    include "view/kopf.inc.php";
   ?>
 </div>
   
 <div id="inhalt_links">
     <?PHP
 	if(isLoggedIn()){
-		include "navigation.inc.php";
+		include "view/navigation.inc.php";
 	}
     ?>
 </div>
@@ -29,10 +29,10 @@
 			include($_GET["inhalt_mitte"]);
 		}
 		else{
-			include("home.inc.php");	
+			include("view/home.inc.php");
 		}
 	}else{
-		include("login_form.php");
+		include("view/login_form.php");
 	}
     ?>      
 </div>
