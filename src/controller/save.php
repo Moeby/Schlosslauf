@@ -1,4 +1,6 @@
 <?php
+require_once("sessionCheck.php");
+
 $file = fopen("file.txt", "a");
 fwrite($file, "Name: ".$_POST["Name"]."\r\n");
 fwrite($file, "Vorname: ".$_POST["Vorname"]."\r\n");

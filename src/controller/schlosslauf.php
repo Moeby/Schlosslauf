@@ -1,3 +1,7 @@
+<?php
+require_once("sessionCheck.php");
+?>
+
 <br>
 <title>Anmeldung Schlosslauf</title>
 <script type="text/javascript">
