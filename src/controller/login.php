@@ -6,6 +6,7 @@ $userDao = new UserDao();
 
 if (isset($_POST['username'])) {
 //	$username = mysql_real_escape_string($_POST['username']);
+
     $username = htmlspecialchars($_POST['username']);
 /*    $con = mysqli_connect("localhost", "root", "", "schlosslauf");
     $query = "select * from login where username='" . $username . "'";
@@ -23,16 +24,16 @@ if (isset($_POST['username'])) {
         echo 'No user with this username exits.';
     }
 
-    //while ($row = mysqli_fetch_array($result)) {
-        //if ($row['password'] === md5($_POST['password'])) {
-/*        if($user->getPassword() === htmlspecialchars($_POST['password'])){
-            $_SESSION['loggedIn'] = "true";
+
+    while ($row = mysqli_fetch_array($result)) {
+        if ($row['password'] === md5($_POST['password'])) {
+            $_SESSION['loggedIn'] = 'true';
 //			echo "succsess";
             header('Location: index.php');
         } else {
-            echo "fail";
+            echo 'fail';
             //header('Location: index.php');
-        }*/
-    //}
+
+        }
+    }
 }
-?>
