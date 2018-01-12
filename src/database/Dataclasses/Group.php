@@ -3,22 +3,13 @@
  * Created by PhpStorm.
  * User: natal
  * Date: 10.01.2018
- * Time: 10:30
+ * Time: 10:38
  */
 
-class Registration
+class Group
 {
     protected $id;
     protected $group;
-    protected $user;
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * @return mixed
@@ -31,17 +22,9 @@ class Registration
     /**
      * @return mixed
      */
-    public function getUser()
+    public function getId()
     {
-        return $this->user;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
+        return $this->id;
     }
 
     /**
@@ -53,10 +36,10 @@ class Registration
     }
 
     /**
-     * @param mixed $user
+     * @param mixed $id
      */
-    public function setUser($user)
+    public function setId($id)
     {
-        $this->user = $user;
+        $this->id = $id;
     }
 }

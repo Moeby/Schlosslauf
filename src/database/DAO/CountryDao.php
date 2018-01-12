@@ -3,10 +3,12 @@
  * Created by PhpStorm.
  * User: natal
  * Date: 10.01.2018
- * Time: 10:31
+ * Time: 10:41
  */
 
-class RegistrationDao
+class CountryDao
 {
+    public function getCountryByName(){
 
+    }
 }
