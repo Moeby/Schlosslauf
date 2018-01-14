@@ -2,10 +2,11 @@
 if(!file_exists('sessionCheck.php')) {
     require_once("../sessionCheck.php");
     if(!$loggedIn) {
-        require_once ("../index.php");
+        require_once("../index.php");
         die();
     }
 }
+//TODO: check which fields are no longer used
 ?>
 
 <br>

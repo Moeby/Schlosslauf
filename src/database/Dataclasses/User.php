@@ -21,6 +21,7 @@ class User
     protected $location;
     protected $area_code;
     protected $admin_code;
+    protected $group;
 
     /**
      * @return mixed
@@ -127,6 +128,14 @@ class User
     }
 
     /**
+     * @return mixed
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+
+    /**
      * @param mixed $name
      */
     public function setName($name)
@@ -228,5 +237,13 @@ class User
     public function setAdminCode($admin_code)
     {
         $this->admin_code = $admin_code;
+    }
+
+    /**
+     * @param mixed $group
+     */
+    public function setGroup($group)
+    {
+        $this->group = $group;
     }
 }

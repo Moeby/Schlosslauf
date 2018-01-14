@@ -44,18 +44,47 @@
         <tr>
             <td>Land:</td>
             <td><select name="Land" required>
-                    <option value="schweiz">Schweiz</option>
+                    <?php
+                        /*if(file_exists('../database/Dao/CountryDao.php')){*/
+                            require_once ('C:/xampp/htdocs/Schlosslauf/src/database/Dao/CountryDao.php');
+                            require_once ('C:/xampp/htdocs/Schlosslauf/src/database/Dataclasses/Country.php');
+                        /*} else{
+                            require_once ('/database/Dao/CountryDao.php');
+                            require_once ('/database/Dataclasses/Country.php');
+                        }*/
+                    $country_dao = new CountryDao();
+                        $country_list = $country_dao->getAllcountries();
+                        foreach ($country_list as $country){
+                            echo('<option value"'.$country->getCountry().'">'.$country->getCountry().'</option>');
+                        }
+                    ?>
+                    <!-- <option value="schweiz">Schweiz</option>
                     <option value="deutschland">Deutschland</option>
                     <option value="italien">Italien</option>
-                    <option value="frankreich">Frankreich</option>
+                    <option value="frankreich">Frankreich</option> -->
                 </select></td>
         </tr>
         <tr>
             <td>Sprache:</td>
-            <td><input type="radio" name="sprache" value="Deutsch"> Deutsch
+            <td>
+                <?php
+                if(file_exists('../database/Dao/LanguageDao.php')){
+                    require_once ('../database/Dao/LanguageDao.php');
+                    require_once ('../database/Dataclasses/Language.php');
+                } else{
+                    require_once ('/database/Dao/LanguageDao.php');
+                    require_once ('/database/Dataclasses/Language.php');
+                }
+                $language_dao = new LanguageDao();
+                $language_list = $language_dao->getAllcountries();
+                foreach ($language_list as $language){
+                    echo('<input type="radio" name="sprache" value="'.$language->getLanguage().'">'.$language->getLanguage());
+                }
+                ?>
+                <!-- <input type="radio" name="sprache" value="Deutsch"> Deutsch
                 <input type="radio" name="sprache" value="Franzoesisch"> Franzoesisch
                 <input type="radio" name="sprache" value="Italienisch"> Italienisch
-                <input type="radio" name="sprache" value="Englisch"> Englisch
+                <input type="radio" name="sprache" value="Englisch"> Englisch -->
             </td>
         </tr>
     </table>

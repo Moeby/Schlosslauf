@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../database/DAO/UserDao.php');
+require_once('../database/Dao/UserDao.php');
 
 $userDao = new UserDao();
 $languageDao = new LanguageDao();
@@ -29,6 +29,7 @@ if (isset($_POST['username'])) {
             || !isset($_POST['Land']) || !isset($_POST['sprache']) || !isset($_POST['Ort'])) {
             echo "Fehlende Informationen.";
         } else {
+            //TODO: check email format
             //Generate salt and hash password
             $seed = '';
             for ($i = 0; $i < 16; $i++) {
@@ -42,8 +43,8 @@ if (isset($_POST['username'])) {
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT, $options);
 
             // Create new user
-            $languageObj = $languageDao->getLanguageByName();
-            $countryObj = $countryDao->getCountryByName();
+            $languageObj = $languageDao->getLanguageByName($language);
+            $countryObj = $countryDao->getCountryByName($country);
             $userDao->newUser($username, $hashedPassword, $salt, $name, $firstName, $mail, $street, $location, $cityCode, $countryObj, $languageObj);
             $_SESSION['loggedIn'] = 'true';
             $_SESSION['loggedInUser'] = $username;
