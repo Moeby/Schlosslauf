@@ -8,7 +8,7 @@
 
 class CountryDao
 {
-    public function getCountryByName(){
+    public function getCountryByName($name){
 
     }
     public function getCountryById(){
