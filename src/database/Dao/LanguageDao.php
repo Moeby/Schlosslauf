@@ -46,7 +46,7 @@ class LanguageDao
 
     public function getAllLanguages(){
         global $con;
-        $language_list = [];
+        $language_list = array();
 
         $sth = $con->prepare('SELECT * FROM language');
         if(!$sth->execute()){
@@ -54,11 +54,12 @@ class LanguageDao
         } else {
             $sth->setFetchMode(PDO::FETCH_ASSOC);
             while($result = $sth->fetch()) {
-                $language = new Country();
+                //$language = new Language();
                 echo($result['id'].$result['language']);
-                $language->setId($result['id']);
-                $language->setCountry($result['language']);
-                $language_list = $language;
+                //$language->setId($result['id']);
+                //$language->setLanguage($result['language']);
+                //$language_list[] = &$language;
+                $language_list[] = new Language($result['id'], $result['language']);
             }
         }
         return $language_list;

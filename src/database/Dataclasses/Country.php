@@ -5,6 +5,11 @@ class Country
     protected $id;
     protected $country;
 
+    public function  __construct($id, $country) {
+        $this->id = $id;
+        $this->country = $country;
+    }
+
     /**
      * @return mixed
      */

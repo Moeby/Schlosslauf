@@ -5,6 +5,11 @@ class Language
     protected $id;
     protected $language;
 
+    public function  __construct($id, $language) {
+        $this->id = $id;
+        $this->language = $language;
+    }
+
     /**
      * @return mixed
      */

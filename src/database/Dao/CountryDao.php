@@ -56,11 +56,8 @@ class CountryDao
         } else {
             $sth->setFetchMode(PDO::FETCH_ASSOC);
             while($result = $sth->fetch()) {
-                $country = new Country();
                 echo($result['id'].$result['country']);
-                $country->setId($result['id']);
-                $country->setCountry($result['country']);
-                $country_list = $country;
+                $country_list = new Country($result['id'], $result['country']);
             }
         }
         return $country_list;

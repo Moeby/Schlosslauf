@@ -53,10 +53,10 @@ class GroupDao
         } else {
             $sth->setFetchMode(PDO::FETCH_ASSOC);
             while($result = $sth->fetch()) {
-                $group = new Country();
-                $group->setId($result['id']);
-                $group->setCountry($result['group']);
-                $group_list = $group;
+                //$group = new Group();
+                //$group->setId($result['id']);
+                //$group->setGroup($result['group']);
+                $group_list = new Group($result['id'], $result['group']);
             }
         }
         return $group_list;

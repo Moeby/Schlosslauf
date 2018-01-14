@@ -55,9 +55,18 @@
                         //TODO: check why no entries are selected
                         $country_dao = new CountryDao();
                         $country_list = $country_dao->getAllCountries();
-                        var_dump($country_list);
-                        foreach ($country_list as $country){
-                            echo('<option value"'.$country->getCountry().'">'.$country->getCountry().'</option>');
+                        if($country_list === 1){
+                            echo 'Database connection problem.';
+                        } else {
+                            if($country_list === null) {
+                                print_r($country_list);
+                                foreach ($country_list as $country) {
+                                    echo('<option value"'.$country->getCountry().'">'.$country->getCountry().'</option>');
+                                    //echo('<option value"' . $country . '">' . $country . '</option>');
+                                }
+                            } else{
+                                echo 'Problem Country.';
+                            }
                         }
                     ?>
                     <!-- <option value="schweiz">Schweiz</option>
@@ -80,9 +89,19 @@
                 //TODO: check why no entries are selected
                 $language_dao = new LanguageDao();
                 $language_list = $language_dao->getAllLanguages();
-                foreach ($language_list as $language){
-                    var_dump($language_list);
-                    echo('<input type="radio" name="sprache" value="'.$language->getLanguage().'">'.$language->getLanguage());
+                //TODO: better error handling
+                if($language_list === 1){
+                    echo 'Database connection problem.';
+                }else {
+                    if($language_list === null) {
+                        foreach ($language_list as $language) {
+                            print_r($language_list);
+                            echo('<input type="radio" name="sprache" value="'.$language->getLanguage().'">'.$language->getLanguage());
+                            //echo('<input type="radio" name="sprache" value="' . $language . '">' . $language);
+                        }
+                    } else{
+                        echo 'Problem Language';
+                    }
                 }
                 ?>
                 <!-- <input type="radio" name="sprache" value="Deutsch"> Deutsch

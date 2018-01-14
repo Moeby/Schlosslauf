@@ -5,6 +5,11 @@ class Group
     protected $id;
     protected $group;
 
+    public function  __construct($id, $group) {
+        $this->id = $id;
+        $this->group = $group;
+    }
+
     /**
      * @return mixed
      */
