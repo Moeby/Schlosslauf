@@ -5,7 +5,17 @@
  * Date: 10.01.2018
  * Time: 10:41
  */
+if(file_exists('../database/DB.php')){
+    require_once ('../database/DB.php');
+    require_once ('../database/Dataclasses/Country.php');
+}else {
+    //TODO: check where the file is called and add require one
+    require_once ('database/DB.php');
+    require_once ('database/Dataclasses/Country.php');
+}
 
+$db = new DB();
+$con = $db ->getConnection();
 class CountryDao
 {
     public function getCountryByName($name){
@@ -39,11 +49,14 @@ class CountryDao
         return 1;
     }
 
-    public function getAllcountries(){
+    public function getAllCountries(){
         global $con;
         $country_list = [];
 
         $sth = $con->prepare('SELECT id FROM country');
+        //$sth = $con->prepare('SELECT id FROM country WHERE 1 = ?');
+        //$index = 1;
+        //$sth->bindParam('i', $index);
         if(!$sth->execute()){
             return 1;
         } else {

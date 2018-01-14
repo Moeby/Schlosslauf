@@ -5,7 +5,17 @@
  * Date: 10.01.2018
  * Time: 10:41
  */
+if(file_exists('../database/DB.php')){
+    require_once ('../database/DB.php');
+    require_once ('../database/Dataclasses/Group.php');
+}else {
+    //TODO: check where the file is called and add require one
+    require_once ('database/DB.php');
+    require_once ('database/Dataclasses/Group.php');
+}
 
+$db = new DB();
+$con = $db ->getConnection();
 class GroupDao
 {
     public function getGroupByName($name){

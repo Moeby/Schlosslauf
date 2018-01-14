@@ -49,11 +49,11 @@
                             require_once ('C:/xampp/htdocs/Schlosslauf/src/database/Dao/CountryDao.php');
                             require_once ('C:/xampp/htdocs/Schlosslauf/src/database/Dataclasses/Country.php');
                         /*} else{
-                            require_once ('/database/Dao/CountryDao.php');
-                            require_once ('/database/Dataclasses/Country.php');
+                            require_once ('database/Dao/CountryDao.php');
+                            require_once ('database/Dataclasses/Country.php');
                         }*/
                     $country_dao = new CountryDao();
-                        $country_list = $country_dao->getAllcountries();
+                        $country_list = $country_dao->getAllCountries();
                         foreach ($country_list as $country){
                             echo('<option value"'.$country->getCountry().'">'.$country->getCountry().'</option>');
                         }
@@ -72,11 +72,11 @@
                     require_once ('../database/Dao/LanguageDao.php');
                     require_once ('../database/Dataclasses/Language.php');
                 } else{
-                    require_once ('/database/Dao/LanguageDao.php');
-                    require_once ('/database/Dataclasses/Language.php');
+                    require_once ('database/Dao/LanguageDao.php');
+                    require_once ('database/Dataclasses/Language.php');
                 }
                 $language_dao = new LanguageDao();
-                $language_list = $language_dao->getAllcountries();
+                $language_list = $language_dao->getAllLanguages();
                 foreach ($language_list as $language){
                     echo('<input type="radio" name="sprache" value="'.$language->getLanguage().'">'.$language->getLanguage());
                 }

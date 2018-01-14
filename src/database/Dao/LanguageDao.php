@@ -5,7 +5,17 @@
  * Date: 10.01.2018
  * Time: 10:40
  */
+if(file_exists('../database/DB.php')){
+    require_once ('../database/DB.php');
+    require_once ('../database/Dataclasses/Language.php');
+}else {
+    //TODO: check where the file is called and add require one
+    require_once ('database/DB.php');
+    require_once ('database/Dataclasses/Language.php');
+}
 
+$db = new DB();
+$con = $db ->getConnection();
 class LanguageDao
 {
     public function getLanguageByName($name){
@@ -40,7 +50,7 @@ class LanguageDao
         return 1;
     }
 
-    public function getAllcountries(){
+    public function getAllLanguages(){
         global $con;
         $language_list = [];
 

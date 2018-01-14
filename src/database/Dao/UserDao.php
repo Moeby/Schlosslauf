@@ -7,11 +7,11 @@ if(file_exists('../database/DB.php')){
     require_once ('../database/Dao/GroupDao.php');
 }else {
     //TODO: check where the file is called and add require one
-    require_once ('/database/DB.php');
-    require_once ('/database/Dataclasses/User.php');
-    require_once ('/database/Dao/CountryDao.php');
-    require_once ('/database/Dao/LanguageDao.php');
-    require_once ('/database/Dao/GroupDao.php');
+    require_once ('database/DB.php');
+    require_once ('database/Dataclasses/User.php');
+    require_once ('database/Dao/CountryDao.php');
+    require_once ('database/Dao/LanguageDao.php');
+    require_once ('database/Dao/GroupDao.php');
 }
 
 $db = new DB();

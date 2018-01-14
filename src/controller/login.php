@@ -4,9 +4,11 @@
 if(file_exists('../database/Dao/UserDao.php')){
     require_once('../database/Dao/UserDao.php');
     require_once('../database/Dao/CountryDao.php');
+    require_once('../database/Dataclasses/Country.php');
 } else{
-    require_once('/database/Dao/UserDao.php');
-    require_once('/database/Dao/CountryDao.php');
+    require_once('database/Dao/UserDao.php');
+    require_once('database/Dao/CountryDao.php');
+    require_once('database/Dataclasses/Country.php');
 }
 
 $userDao = new UserDao();
@@ -17,16 +19,6 @@ if (isset($_POST['username'])) {
     $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
     $user = $userDao->getUserByName($username);
-
-    $country_dao = new CountryDao();
-    $country_list = $country_dao->getAllcountries();
-    if($country_list === 1){
-        echo "DB Connection failed.";
-    } else {
-        foreach ($country_list as $country) {
-            echo "Country: " . $country->getCountry;
-        }
-    }
 
     if($user !== null){
         echo $user->getFirstName().':'.$user->getName();
