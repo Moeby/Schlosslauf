@@ -8,7 +8,7 @@
 
 class LanguageDao
 {
-    public function getLanguageByDao(){
+    public function getLanguageByName($name){
 
     }
 }
