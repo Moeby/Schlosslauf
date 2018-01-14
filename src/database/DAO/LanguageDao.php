@@ -8,7 +8,15 @@
 
 class LanguageDao
 {
-    public function getLanguageByDao(){
+    public function getLanguageByName($language){
+        global $con;
+
+        $sth = $con->prepare('SELECT id FROM language WHERE language = "'.$language.'"');
+        $sth->execute();
+
+    }
+
+    public function getLanguageById(){
 
     }
 }

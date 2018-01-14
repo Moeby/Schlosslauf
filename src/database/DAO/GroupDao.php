@@ -11,4 +11,7 @@ class GroupDao
     public function getGroupByName(){
 
     }
+    public function getGroupById(){
+
+    }
 }

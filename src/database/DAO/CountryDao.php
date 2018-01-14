@@ -11,4 +11,7 @@ class CountryDao
     public function getCountryByName(){
 
     }
+    public function getCountryById(){
+
+    }
 }
