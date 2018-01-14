@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: natal
- * Date: 10.01.2018
- * Time: 10:41
- */
 if(file_exists('../database/DB.php')){
     require_once ('../database/DB.php');
     require_once ('../database/Dataclasses/Country.php');
@@ -21,8 +15,8 @@ class CountryDao
     public function getCountryByName($name){
         global $con;
 
-        $sth = $con->prepare('SELECT id FROM country WHERE country = ?');
-        $sth->bindParam('s', htmlspecialchars($name));
+        $sth = $con->prepare('SELECT * FROM country WHERE country = :country');
+        $sth->bindParam(':country', $name);
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         if($result['id'] !== null){
@@ -36,8 +30,8 @@ class CountryDao
     public function getCountryById($id){
         global $con;
 
-        $sth = $con->prepare('SELECT id FROM country WHERE id = ?');
-        $sth->bindParam('i', htmlspecialchars($id));
+        $sth = $con->prepare('SELECT * FROM country WHERE id = :counrty_id');
+        $sth->bindParam(':counrty_id', $id);
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         if($result['id'] !== null){
@@ -53,7 +47,7 @@ class CountryDao
         global $con;
         $country_list = [];
 
-        $sth = $con->prepare('SELECT id FROM country');
+        $sth = $con->prepare('SELECT * FROM country');
         //$sth = $con->prepare('SELECT id FROM country WHERE 1 = ?');
         //$index = 1;
         //$sth->bindParam('i', $index);
@@ -63,6 +57,7 @@ class CountryDao
             $sth->setFetchMode(PDO::FETCH_ASSOC);
             while($result = $sth->fetch()) {
                 $country = new Country();
+                echo($result['id'].$result['country']);
                 $country->setId($result['id']);
                 $country->setCountry($result['country']);
                 $country_list = $country;

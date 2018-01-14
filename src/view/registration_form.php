@@ -45,15 +45,17 @@
             <td>Land:</td>
             <td><select name="Land" required>
                     <?php
-                        /*if(file_exists('../database/Dao/CountryDao.php')){*/
-                            require_once ('C:/xampp/htdocs/Schlosslauf/src/database/Dao/CountryDao.php');
-                            require_once ('C:/xampp/htdocs/Schlosslauf/src/database/Dataclasses/Country.php');
-                        /*} else{
+                        if(file_exists('../database/Dao/CountryDao.php')){
+                            require_once ('../database/Dao/CountryDao.php');
+                            require_once ('../database/Dataclasses/Country.php');
+                        } else{
                             require_once ('database/Dao/CountryDao.php');
                             require_once ('database/Dataclasses/Country.php');
-                        }*/
-                    $country_dao = new CountryDao();
+                        }
+                        //TODO: check why no entries are selected
+                        $country_dao = new CountryDao();
                         $country_list = $country_dao->getAllCountries();
+                        var_dump($country_list);
                         foreach ($country_list as $country){
                             echo('<option value"'.$country->getCountry().'">'.$country->getCountry().'</option>');
                         }
@@ -75,9 +77,11 @@
                     require_once ('database/Dao/LanguageDao.php');
                     require_once ('database/Dataclasses/Language.php');
                 }
+                //TODO: check why no entries are selected
                 $language_dao = new LanguageDao();
                 $language_list = $language_dao->getAllLanguages();
                 foreach ($language_list as $language){
+                    var_dump($language_list);
                     echo('<input type="radio" name="sprache" value="'.$language->getLanguage().'">'.$language->getLanguage());
                 }
                 ?>

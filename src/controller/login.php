@@ -21,10 +21,9 @@ if (isset($_POST['username'])) {
     $user = $userDao->getUserByName($username);
 
     if($user !== null){
-        echo $user->getFirstName().':'.$user->getName();
         if($user->getPassword() === password_hash($password, PASSWORD_BCRYPT)){
             $_SESSION['loggedIn'] = 'true';
-            echo 'Success.';
+            //echo 'Success.';
             //header('Location: schlosslauf.php');
             require_once('../index.php');
         } else {

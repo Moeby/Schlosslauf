@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: natal
- * Date: 10.01.2018
- * Time: 10:41
- */
 if(file_exists('../database/DB.php')){
     require_once ('../database/DB.php');
     require_once ('../database/Dataclasses/Group.php');
@@ -21,8 +15,8 @@ class GroupDao
     public function getGroupByName($name){
         global $con;
 
-        $sth = $con->prepare('SELECT id FROM group WHERE group = ?');
-        $sth->bindParam('s', htmlspecialchars($name));
+        $sth = $con->prepare('SELECT * FROM group WHERE group = :group');
+        $sth->bindParam(':group', htmlspecialchars($name));
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         if($result['id'] !== null){
@@ -36,8 +30,8 @@ class GroupDao
     public function getGroupById($id){
         global $con;
 
-        $sth = $con->prepare('SELECT id FROM group WHERE id = ?');
-        $sth->bindParam('i', htmlspecialchars($id));
+        $sth = $con->prepare('SELECT * FROM group WHERE id = :group_id');
+        $sth->bindParam(':group_id', $id);
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         if($result['id'] !== null){
@@ -53,7 +47,7 @@ class GroupDao
         global $con;
         $group_list = [];
 
-        $sth = $con->prepare('SELECT id FROM group');
+        $sth = $con->prepare('SELECT * FROM group');
         if(!$sth->execute()){
             return 1;
         } else {

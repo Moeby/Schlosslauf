@@ -28,8 +28,8 @@ class UserDao
         global $languageDao;
         global $groupDao;
 
-        $sth = $con->prepare('SELECT * FROM user WHERE username = ?');
-        $sth->bindParam('s', htmlspecialchars($username));
+        $sth = $con->prepare('SELECT * FROM user WHERE username = :username');
+        $sth->bindParam(':username', $username);
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
 
@@ -60,24 +60,36 @@ class UserDao
 
     public function newUser($username, $password, $salt, $name, $first_name, $email, $street, $location, $area_code, $country, $language){
         global $con;
+        $admin_code = 0;
+        $group = null;
 
-        $sth = $con->prepare('INSERT INTO user VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)');
+        $sth = $con->prepare('INSERT INTO user VALUES (:username
+          ,:password
+          ,:salt
+          ,:last_name
+          ,:first_name
+          ,:email
+          ,:street
+          ,:location
+          ,:area_code
+          ,:country
+          ,:user_language
+          ,:admin_code
+          ,:user_group)');
 
-        $sth->bindParam('sssssssssiiii'
-            ,$username
-            ,$password
-            ,$salt
-            ,$name
-            ,$first_name
-            ,$email
-            ,$street
-            ,$location
-            ,$area_code
-            ,$country->getId()
-            ,$language->getId()
-            ,0
-            ,null
-        );
+        $sth->bindParam(':username', $username);
+        $sth->bindParam(':password', $password);
+        $sth->bindParam(':salt', $salt);
+        $sth->bindParam(':last_name', $name);
+        $sth->bindParam(':first_name', $first_name);
+        $sth->bindParam(':email', $email);
+        $sth->bindParam(':street', $street);
+        $sth->bindParam(':location', $location);
+        $sth->bindParam(':area_code', $area_code);
+        $sth->bindParam(':country', $country->getId());
+        $sth->bindParam(':user_language', $language->getId());
+        $sth->bindParam(':admin_code', $admin_code);
+        $sth->bindParam(':user_group', $group);
 
         if(!$sth->execute()){
             return 1;
@@ -93,9 +105,9 @@ class UserDao
         global $groupDao;
         $user_list = [];
 
-        $sth = $con->prepare('SELECT * FROM user WHERE admin_code = ?');
+        $sth = $con->prepare('SELECT * FROM user WHERE admin_code = :admin_code');
         $adminCode = 0;
-        $sth->bindParam('i', $adminCode);
+        $sth->bindParam(':admin_code', $adminCode);
 
         if(!$sth->execute()){
             return 1;
