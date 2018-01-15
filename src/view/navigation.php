@@ -6,7 +6,7 @@ $menuStruct = array('Home' => array('root' => $siteRoot . "view\\home.html"),
     'Vorwort' => array('root' => $siteRoot . "view\\vorwort.html"),
     'Eigenschaften' => array('root' => $siteRoot . "view\\eigenschaften.html"),
     'Aufgaben' => array('root' => $siteRoot . "view\\aufgaben.html"),
-    'Anmeldung Schlosslauf' => array('root' => $siteRoot . "controller\\schlosslauf.php"),
+    'Anmeldung Schlosslauf' => array('root' => $siteRoot . "view\\schlosslauf.php"),
     'Logout' => array('root' => $siteRoot . "controller\\logout.php")
 );
 $url = '';

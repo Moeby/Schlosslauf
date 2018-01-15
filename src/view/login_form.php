@@ -1,5 +1,5 @@
 <form action="controller/login.php" method="post">
-    <h1>Login</h1>
+    <h2>Login</h2>
         <table>
             <tr>
                 <td>Username</td>

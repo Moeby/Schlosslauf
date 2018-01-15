@@ -1,6 +1,10 @@
 <?php
 session_start();
-require_once('../database/Dao/UserDao.php');
+if(file_exists('../database/Dao/UserDao.php')){
+    require_once('../database/Dao/UserDao.php');
+} else {
+    require_once('database/Dao/UserDao.php');
+}
 
 $userDao = new UserDao();
 $languageDao = new LanguageDao();
@@ -48,18 +52,27 @@ if (isset($_POST['username'])) {
             if(null !== $userDao->newUser($username, $hashedPassword, $salt, $name, $firstName, $mail, $street, $location, $cityCode, $countryObj, $languageObj)){
                 $_SESSION['loggedIn'] = 'true';
                 $_SESSION['loggedInUser'] = $username;
-                header('Location: index.php');
+                if(file_exists('index.php')){
+                    header('Location: index.php');
+                } else{
+                    header('Location: ../index.php');
+                }
             } else {
                 echo "Registrierung fehlgeschlagen.";
-                //TODO: check what is necessary
                 if(file_exists('index.php')){
-                    header('index.php');
+                    header('Location: index.php?inhalt_mitte=registration_form.php');
                 } else{
-                    header('../index.php');
+                    header('Location: ../index.php?inhalt_mitte=registration_form.php');
                 }
             }
+
         }
     } else {
         echo "Benutzername bereits in Verwendung.";
+        if(file_exists('index.php')){
+            header('Location: index.php?inhalt_mitte=registration_form.php');
+        } else{
+            header('Location: ../index.php?inhalt_mitte=registration_form.php');
+        }
     }
 }
