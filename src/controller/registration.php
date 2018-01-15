@@ -53,7 +53,11 @@ if (isset($_POST['username'])) {
             } else {
                 echo "Registrierung fehlgeschlagen.";
                 //TODO: check what is necessary
-                include ('index.php');
+                if(file_exists('index.php')){
+                    include ('index.php');
+                } else{
+                    include ('../index.php');
+                }
             }
         }
     } else {

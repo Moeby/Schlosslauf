@@ -20,12 +20,10 @@ class GroupDao
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         if($result['id'] !== null){
-            $group = new Group();
-            $group->setId($result['id']);
-            $group->setGroup($result['group']);
+            $group = new Group($result['id'], $result['group']);
             return $group;
         }
-        return 1;
+        return null;
     }
     public function getGroupById($id){
         global $con;
@@ -35,17 +33,15 @@ class GroupDao
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         if($result['id'] !== null){
-            $group = new Group();
-            $group->setId($result['id']);
-            $group->setGroup($result['group']);
+            $group = new Group($result['id'], $result['group']);
             return $group;
         }
-        return 1;
+        return null;
     }
 
     public function getAllGroups(){
         global $con;
-        $group_list = [];
+        $group_list = array();
 
         $sth = $con->prepare('SELECT * FROM group');
         if(!$sth->execute()){
@@ -53,10 +49,7 @@ class GroupDao
         } else {
             $sth->setFetchMode(PDO::FETCH_ASSOC);
             while($result = $sth->fetch()) {
-                //$group = new Group();
-                //$group->setId($result['id']);
-                //$group->setGroup($result['group']);
-                $group_list = new Group($result['id'], $result['group']);
+                $group_list[] = new Group($result['id'], $result['group']);
             }
         }
         return $group_list;

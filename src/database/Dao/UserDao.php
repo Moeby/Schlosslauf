@@ -63,6 +63,8 @@ class UserDao
         global $con;
         $admin_code = 0;
         $group = null;
+        $country_id = $country->getId();
+        $language_id = $language->getId();
 
         $sth = $con->prepare('INSERT INTO user VALUES (:username
           ,:password
@@ -87,8 +89,8 @@ class UserDao
         $sth->bindParam(':street', $street);
         $sth->bindParam(':location', $location);
         $sth->bindParam(':area_code', $area_code);
-        $sth->bindParam(':country', $country->getId());
-        $sth->bindParam(':user_language', $language->getId());
+        $sth->bindParam(':country', $country_id);
+        $sth->bindParam(':user_language', $language_id);
         $sth->bindParam(':admin_code', $admin_code);
         $sth->bindParam(':user_group', $group);
 

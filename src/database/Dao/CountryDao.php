@@ -20,9 +20,7 @@ class CountryDao
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         if($result['id'] !== null){
-            $country = new Country();
-            $country->setId($result['id']);
-            $country->setCountry($result['country']);
+            $country = new Country($result['id'], $result['country']);
             return $country;
         }
         return 1;
@@ -35,9 +33,7 @@ class CountryDao
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         if($result['id'] !== null){
-            $country = new Country();
-            $country->setId($result['id']);
-            $country->setCountry($result['country']);
+            $country = new Country($result['id'], $result['country']);
             return $country;
         }
         return 1;

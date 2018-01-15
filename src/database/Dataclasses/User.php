@@ -17,7 +17,7 @@ class User
     protected $admin_code;
     protected $group;
 
-    public function  __construct($id, $username, $password, $salt, $name, $first_name, $email, $country, $language, $street, $location, $area_code, $admin_code, $group) {
+    /*public function  __construct($id, $username, $password, $salt, $name, $first_name, $email, $country, $language, $street, $location, $area_code, $admin_code, $group) {
         $this->id         = $id;
         $this->username   = $username;
         $this->password   = $password;
@@ -32,7 +32,7 @@ class User
         $this->area_code  = $area_code;
         $this->admin_code = $admin_code;
         $this->group      = $group;
-    }
+    }*/
 
     /**
      * @return mixed

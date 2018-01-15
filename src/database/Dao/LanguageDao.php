@@ -20,9 +20,7 @@ class LanguageDao
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         if($result['id'] !== null){
-            $language = new Language();
-            $language->setId($result['id']);
-            $language->setLanguage($result['language']);
+            $language = new Language($result['id'], $result['language']);
             return $language;
         }
         return 1;
@@ -36,9 +34,7 @@ class LanguageDao
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         if($result['id'] !== null){
-            $language = new Language();
-            $language->setId($result['id']);
-            $language->setLanguage($result['language']);
+            $language = new Language($result['id'], $result['language']);
             return $language;
         }
         return 1;
@@ -47,7 +43,6 @@ class LanguageDao
     public function getAllLanguages(){
         global $con;
         $language_list = array();
-        $language_list2 = array();
 
         $sth = $con->prepare('SELECT * FROM language');
         if(!$sth->execute()){
@@ -55,15 +50,9 @@ class LanguageDao
         } else {
             $sth->setFetchMode(PDO::FETCH_ASSOC);
             while($result = $sth->fetch()) {
-                //echo($result['id'].$result['language']);
-                //$language->setId($result['id']);
-                //$language->setLanguage($result['language']);
-                //$language_list[] = &$language;
                 $language_list[] = new Language($result['id'], $result['language']);
-                //$language_list2[] = $result['language'];
             }
         }
         return $language_list;
-        //return $language_list2;
     }
 }
