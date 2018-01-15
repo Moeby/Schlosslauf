@@ -59,6 +59,7 @@ class UserDao
     }
 
     public function newUser($username, $password, $salt, $name, $first_name, $email, $street, $location, $area_code, $country, $language){
+        //TODO: check if wothout admin code the instert is still working
         global $con;
         $admin_code = 0;
         $group = null;

@@ -58,11 +58,10 @@
                         if($country_list === 1){
                             echo 'Database connection problem.';
                         } else {
-                            if($country_list === null) {
+                            if($country_list !== null) {
                                 print_r($country_list);
                                 foreach ($country_list as $country) {
-                                    echo('<option value"'.$country->getCountry().'">'.$country->getCountry().'</option>');
-                                    //echo('<option value"' . $country . '">' . $country . '</option>');
+                                    echo('<option value="'.$country->getCountry().'">'.$country->getCountry().'</option>');
                                 }
                             } else{
                                 echo 'Problem Country.';
@@ -93,9 +92,9 @@
                 if($language_list === 1){
                     echo 'Database connection problem.';
                 }else {
-                    if($language_list === null) {
+                    if($language_list !== null) {
                         foreach ($language_list as $language) {
-                            print_r($language_list);
+                            //print_r($language_list);
                             echo('<input type="radio" name="sprache" value="'.$language->getLanguage().'">'.$language->getLanguage());
                             //echo('<input type="radio" name="sprache" value="' . $language . '">' . $language);
                         }

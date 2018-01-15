@@ -45,7 +45,7 @@ class CountryDao
 
     public function getAllCountries(){
         global $con;
-        $country_list = [];
+        $country_list = array();
 
         $sth = $con->prepare('SELECT * FROM country');
         //$sth = $con->prepare('SELECT id FROM country WHERE 1 = ?');
@@ -56,8 +56,8 @@ class CountryDao
         } else {
             $sth->setFetchMode(PDO::FETCH_ASSOC);
             while($result = $sth->fetch()) {
-                echo($result['id'].$result['country']);
-                $country_list = new Country($result['id'], $result['country']);
+                //echo($result['id'].$result['country']);
+                $country_list[] = new Country($result['id'], $result['country']);
             }
         }
         return $country_list;

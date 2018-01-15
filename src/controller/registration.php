@@ -9,15 +9,6 @@ $countryDao = new CountryDao();
 if (isset($_POST['username'])) {
     //Strip html
     $username = htmlspecialchars($_POST['username']);
-    $password = htmlspecialchars($_POST['password']);
-    $name = htmlspecialchars($_POST['Name']);
-    $firstName = htmlspecialchars($_POST['Vorname']);
-    $street = htmlspecialchars($_POST['Strasse']);
-    $cityCode = htmlspecialchars($_POST['PLZ']);
-    $location = htmlspecialchars($_POST['Ort']);
-    $mail = htmlspecialchars($_POST['Mail']);
-    $country = htmlspecialchars($_POST['Land']);
-    $language = htmlspecialchars($_POST['sprache']);
 
     $userAlreadyExisting = $userDao->getUserByName($username);
 
@@ -30,6 +21,16 @@ if (isset($_POST['username'])) {
             echo "Fehlende Informationen.";
         } else {
             //TODO: check email format
+            $password = htmlspecialchars($_POST['password']);
+            $name = htmlspecialchars($_POST['Name']);
+            $firstName = htmlspecialchars($_POST['Vorname']);
+            $street = htmlspecialchars($_POST['Strasse']);
+            $cityCode = htmlspecialchars($_POST['PLZ']);
+            $location = htmlspecialchars($_POST['Ort']);
+            $mail = htmlspecialchars($_POST['Mail']);
+            $country = htmlspecialchars($_POST['Land']);
+            $language = htmlspecialchars($_POST['sprache']);
+
             //Generate salt and hash password
             $seed = '';
             for ($i = 0; $i < 16; $i++) {
@@ -45,10 +46,15 @@ if (isset($_POST['username'])) {
             // Create new user
             $languageObj = $languageDao->getLanguageByName($language);
             $countryObj = $countryDao->getCountryByName($country);
-            $userDao->newUser($username, $hashedPassword, $salt, $name, $firstName, $mail, $street, $location, $cityCode, $countryObj, $languageObj);
-            $_SESSION['loggedIn'] = 'true';
-            $_SESSION['loggedInUser'] = $username;
-            header('Location: index.php');
+            if($userDao->newUser($username, $hashedPassword, $salt, $name, $firstName, $mail, $street, $location, $cityCode, $countryObj, $languageObj) !== 1){
+                $_SESSION['loggedIn'] = 'true';
+                $_SESSION['loggedInUser'] = $username;
+                header('Location: index.php');
+            } else {
+                echo "Registrierung fehlgeschlagen.";
+                //TODO: check what is necessary
+                include ('index.php');
+            }
         }
     } else {
         echo "Benutzername bereits in Verwendung.";
