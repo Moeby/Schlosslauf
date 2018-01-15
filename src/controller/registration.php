@@ -12,7 +12,7 @@ if (isset($_POST['username'])) {
     $userAlreadyExisting = $userDao->getUserByName($username);
 
     //check username not taken
-    if (null !== $userAlreadyExisting) {
+    if (null === $userAlreadyExisting) {
         //check if any of the required fields are empty
         if (!isset($_POST['username']) || !isset($_POST['password']) || !isset($_POST['Name']) || !isset($_POST['Vorname'])
             || !isset($_POST['Strasse']) || !isset($_POST['PLZ']) || !isset($_POST['Mail'])
@@ -45,7 +45,7 @@ if (isset($_POST['username'])) {
             // Create new user
             $languageObj = $languageDao->getLanguageByName($language);
             $countryObj = $countryDao->getCountryByName($country);
-            if($userDao->newUser($username, $hashedPassword, $salt, $name, $firstName, $mail, $street, $location, $cityCode, $countryObj, $languageObj) !== 1){
+            if(null !== $userDao->newUser($username, $hashedPassword, $salt, $name, $firstName, $mail, $street, $location, $cityCode, $countryObj, $languageObj)){
                 $_SESSION['loggedIn'] = 'true';
                 $_SESSION['loggedInUser'] = $username;
                 header('Location: index.php');

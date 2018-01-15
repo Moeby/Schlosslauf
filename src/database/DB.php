@@ -18,7 +18,7 @@ class DB {
     private static $db = 'schlosslauf';
 
     public function getConnection() {
-        $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
+        $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
         try{
             $db = new PDO(self::$host.';dbname='.self::$db, self::$user, self::$pw, $options);
             return $db;

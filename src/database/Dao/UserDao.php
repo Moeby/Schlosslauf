@@ -15,7 +15,7 @@ if(file_exists('../database/DB.php')){
 }
 
 $db = new DB();
-$con = $db ->getConnection();
+$con = $db->getConnection();
 $countryDao = new CountryDao();
 $languageDao = new LanguageDao();
 $groupDao = new GroupDao();
@@ -66,7 +66,9 @@ class UserDao
         $country_id = $country->getId();
         $language_id = $language->getId();
 
-        $sth = $con->prepare('INSERT INTO user VALUES (:username
+        $sth = $con->prepare('INSERT INTO user VALUES (
+            null,
+           :username
           ,:password
           ,:salt
           ,:last_name
@@ -95,7 +97,7 @@ class UserDao
         $sth->bindParam(':user_group', $group);
 
         if(!$sth->execute()){
-            return 1;
+            return null;
         }
         $insert_id = $con->lastInsertId();
         return $insert_id;
