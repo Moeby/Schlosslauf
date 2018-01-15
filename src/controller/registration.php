@@ -9,7 +9,6 @@ $countryDao = new CountryDao();
 if (isset($_POST['username'])) {
     //Strip html
     $username = htmlspecialchars($_POST['username']);
-
     $userAlreadyExisting = $userDao->getUserByName($username);
 
     //check username not taken
@@ -54,9 +53,9 @@ if (isset($_POST['username'])) {
                 echo "Registrierung fehlgeschlagen.";
                 //TODO: check what is necessary
                 if(file_exists('index.php')){
-                    include ('index.php');
+                    header('index.php');
                 } else{
-                    include ('../index.php');
+                    header('../index.php');
                 }
             }
         }
