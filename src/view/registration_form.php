@@ -68,10 +68,6 @@
                             }
                         }
                     ?>
-                    <!-- <option value="schweiz">Schweiz</option>
-                    <option value="deutschland">Deutschland</option>
-                    <option value="italien">Italien</option>
-                    <option value="frankreich">Frankreich</option> -->
                 </select></td>
         </tr>
         <tr>
@@ -93,24 +89,22 @@
                     echo 'Database connection problem.';
                 }else {
                     if($language_list !== null) {
+                        echo('<table>');
                         foreach ($language_list as $language) {
-                            //print_r($language_list);
-                            echo('<input type="radio" name="sprache" value="'.$language->getLanguage().'">'.$language->getLanguage());
-                            //echo('<input type="radio" name="sprache" value="' . $language . '">' . $language);
+                            echo('<tr><td><input type="radio" name="sprache" value="'.$language->getLanguage().'">'.$language->getLanguage().'</td></tr>');
                         }
+                        echo('</table>');
                     } else{
                         echo 'Problem Language';
                     }
                 }
                 ?>
-                <!-- <input type="radio" name="sprache" value="Deutsch"> Deutsch
-                <input type="radio" name="sprache" value="Franzoesisch"> Franzoesisch
-                <input type="radio" name="sprache" value="Italienisch"> Italienisch
-                <input type="radio" name="sprache" value="Englisch"> Englisch -->
             </td>
         </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Anmelden"/></td>
+        </tr>
     </table>
-
-    <input type="submit" value="Anmelden"/>
 </form>
 <a href="index.php?inhalt_mitte=login_form.php">Account bereits vorhanden? Log dich ein!</a>
