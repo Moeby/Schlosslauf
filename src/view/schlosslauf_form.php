@@ -1,8 +1,8 @@
 <?php
 if(!file_exists('sessionCheck.php')) {
-    require_once("../sessionCheck.php");
+    require_once '../sessionCheck.php';
     if(!$loggedIn) {
-        require_once("../index.php");
+        require_once '../index.php';
         die();
     }
 }
@@ -87,11 +87,11 @@ if(!file_exists('sessionCheck.php')) {
             <td><select name="Gruppe">
                 <?php
                 if(file_exists('../database/Dao/GroupDao.php')){
-                    require_once('../database/Dao/GroupDao.php');
-                    require_once('../database/Dataclasses/Group.php');
+                    require_once '../database/Dao/GroupDao.php';
+                    require_once '../database/Dataclasses/Group.php';
                 } else{
-                    require_once ('database/Dao/GroupDao.php');
-                    require_once ('database/Dataclasses/Group.php');
+                    require_once 'database/Dao/GroupDao.php';
+                    require_once 'database/Dataclasses/Group.php';
                 }
                 $group_dao = new GroupDao();
                 $group_list = $group_dao->getAllGroups();

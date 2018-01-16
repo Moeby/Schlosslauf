@@ -1,13 +1,13 @@
 <?php
 require_once 'sessionCheck.php';
 if(file_exists('../database/Dao/UserDao.php')){
-    require_once('../database/Dao/UserDao.php');
-    require_once('../database/Dao/CountryDao.php');
-    require_once('../database/Dataclasses/Country.php');
+    require_once '../database/Dao/UserDao.php';
+    require_once '../database/Dao/CountryDao.php';
+    require_once '../database/Dataclasses/Country.php';
 } else{
-    require_once('database/Dao/UserDao.php');
-    require_once('database/Dao/CountryDao.php');
-    require_once('database/Dataclasses/Country.php');
+    require_once 'database/Dao/UserDao.php';
+    require_once 'database/Dao/CountryDao.php';
+    require_once 'database/Dataclasses/Country.php';
 }
 
 $siteRoot = 'index.php?inhalt_mitte=';

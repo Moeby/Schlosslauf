@@ -1,10 +1,10 @@
 <?php
 if(file_exists('../database/DB.php')){
-    require_once ('../database/DB.php');
-    require_once ('../database/Dataclasses/Country.php');
+    require_once '../database/DB.php';
+    require_once '../database/Dataclasses/Country.php';
 }else {
-    require_once ('database/DB.php');
-    require_once ('database/Dataclasses/Country.php');
+    require_once 'database/DB.php';
+    require_once 'database/Dataclasses/Country.php';
 }
 
 $db = new DB();
@@ -19,8 +19,7 @@ class CountryDao
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         if(null !== $result['id']){
-            $country = new Country($result['id'], $result['country']);
-            return $country;
+            return new Country($result['id'], $result['country']);
         }
         return 1;
     }
@@ -32,8 +31,7 @@ class CountryDao
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         if(null !== $result['id']){
-            $country = new Country($result['id'], $result['country']);
-            return $country;
+            return new Country($result['id'], $result['country']);
         }
         return 1;
     }

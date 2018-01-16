@@ -1,11 +1,10 @@
 <?php
 if(file_exists('../database/DB.php')){
-    require_once ('../database/DB.php');
-    require_once ('../database/Dataclasses/Group.php');
+    require_once '../database/DB.php';
+    require_once '../database/Dataclasses/Group.php';
 }else {
-    //TODO: check where the file is called and add require one
-    require_once ('database/DB.php');
-    require_once ('database/Dataclasses/Group.php');
+    require_once 'database/DB.php';
+    require_once 'database/Dataclasses/Group.php';
 }
 
 $db = new DB();
@@ -20,8 +19,7 @@ class GroupDao
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         if(null !== $result['id']){
-            $group = new Group($result['id'], $result['group']);
-            return $group;
+            return new Group($result['id'], $result['group']);
         }
         return null;
     }
@@ -33,8 +31,7 @@ class GroupDao
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         if(null !== $result['id']){
-            $group = new Group($result['id'], $result['group']);
-            return $group;
+            return new Group($result['id'], $result['group']);
         }
         return null;
     }
