@@ -48,7 +48,7 @@ if (isset($_POST['username'])) {
             if(null !== $userDao->newUser($username, $hashedPassword, $salt, $name, $firstName, $mail, $street, $location, $cityCode, $countryObj, $languageObj)){
                 $_SESSION['loggedIn'] = 'true';
                 $_SESSION['loggedInUser'] = $username;
-                header('Location: index.php');
+                header('Location: /Schlosslauf/Schlosslauf/src/index.php?');
             } else {
                 echo "Registrierung fehlgeschlagen.";
                 //TODO: check what is necessary
