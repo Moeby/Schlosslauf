@@ -1,10 +1,6 @@
 <?php
 session_start();
-if(file_exists('../database/Dao/UserDao.php')){
-    require_once('../database/Dao/UserDao.php');
-} else {
-    require_once('database/Dao/UserDao.php');
-}
+require_once('../database/Dao/UserDao.php');
 
 $userDao = new UserDao();
 $languageDao = new LanguageDao();
@@ -53,27 +49,18 @@ if (isset($_POST['username'])) {
             if(null !== $user){
                 $_SESSION['loggedIn'] = 'true';
                 $_SESSION['loggedInUser'] = $user;
-                if(file_exists('index.php')){
-                    header('Location: index.php');
-                } else{
-                    header('Location: ../index.php');
-                }
+                header('Location: /Schlosslauf/Schlosslauf/src/index.php?');
             } else {
                 echo "Registrierung fehlgeschlagen.";
+                //TODO: check what is necessary
                 if(file_exists('index.php')){
-                    header('Location: index.php?inhalt_mitte=registration_form.php');
+                    header('index.php');
                 } else{
-                    header('Location: ../index.php?inhalt_mitte=registration_form.php');
+                    header('../index.php');
                 }
             }
-
         }
     } else {
         echo "Benutzername bereits in Verwendung.";
-        if(file_exists('index.php')){
-            header('Location: index.php?inhalt_mitte=registration_form.php');
-        } else{
-            header('Location: ../index.php?inhalt_mitte=registration_form.php');
-        }
     }
 }

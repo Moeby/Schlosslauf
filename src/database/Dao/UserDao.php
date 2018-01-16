@@ -39,7 +39,10 @@ class UserDao
             $user = new User();
             $country = $countryDao->getCountryById($result['country_fk']);
             $language = $languageDao->getLanguageById($result['language_fk']);
-            $group = $groupDao->getGroupById($result['group_fk']);
+            $group = null;
+            if( null !== $result['group_fk']) {
+                $group = $groupDao->getGroupById($result['group_fk']);
+            }
 
             $user->setId($result['id']);
             $user->setUsername($result['username']);
