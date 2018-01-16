@@ -35,7 +35,8 @@ require_once 'sessionCheck.php';
     <?PHP
     if ($loggedIn) {
         if (isset($_GET["inhalt_mitte"])) {
-            include($_GET["inhalt_mitte"]);
+            $inhalt_mitte = htmlspecialchars($_GET['inhalt_mitte']);
+            include($inhalt_mitte);
         } else {
             include("view/home.html");
         }
