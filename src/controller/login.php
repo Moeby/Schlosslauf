@@ -2,7 +2,6 @@
 //TODO: check if required
 //session_start();
 if(file_exists('../database/Dao/UserDao.php')){
-    echo "1";
     require_once('../database/Dao/UserDao.php');
     require_once('../database/Dao/CountryDao.php');
     require_once('../database/Dataclasses/Country.php');
@@ -22,14 +21,18 @@ if (isset($_POST['username'])) {
     $user = $userDao->getUserByName($username);
 
     if($user !== null){
-        if($user->getPassword() === password_hash($password, PASSWORD_BCRYPT)){
+        $salt = $user->getSalt();
+        $options = [
+            'salt' => $salt
+        ];
+        if($user->getPassword() === password_hash($password, PASSWORD_BCRYPT, $options)){
             $_SESSION['loggedIn'] = 'true';
-            $_SESSION['loggedInUser'] = $user;
-            //if(file_exists('../index.php')){
-              //  require_once('../index.php');
-            //} else {
-              //  require_once('index.php');
-            //}
+            $_SESSION['loggedInUser'] = $username;
+            if(file_exists('../index.php')){
+                require_once('../index.php');
+            } else {
+                require_once('index.php');
+            }
             //echo 'Success.';
             //header('Location: schlosslauf_form.php');
             //require_once('C:/xampp/htdocs/Schlosslauf/src/index.php');
