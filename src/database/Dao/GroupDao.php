@@ -15,7 +15,7 @@ class GroupDao
     public function getGroupByName($name){
         global $con;
 
-        $sth = $con->prepare('SELECT * FROM group WHERE group = :group');
+        $sth = $con->prepare('SELECT * FROM `group` WHERE group = :group');
         $sth->bindParam(':group', htmlspecialchars($name));
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
@@ -28,7 +28,7 @@ class GroupDao
     public function getGroupById($id){
         global $con;
 
-        $sth = $con->prepare('SELECT * FROM group WHERE id = :group_id');
+        $sth = $con->prepare('SELECT * FROM `group` WHERE id = :group_id');
         $sth->bindParam(':group_id', $id);
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
@@ -43,7 +43,7 @@ class GroupDao
         global $con;
         $group_list = array();
 
-        $sth = $con->prepare('SELECT * FROM group');
+        $sth = $con->prepare('SELECT * FROM `group`');
         if(!$sth->execute()){
             echo('untilhere');
             return 1;
