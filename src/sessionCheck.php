@@ -4,12 +4,8 @@ if(session_status() == PHP_SESSION_NONE) {
 }
 
 function isLoggedIn(){
-	if(isset($_SESSION['loggedIn']) && isset($_SESSION['loggedInUser'])){
-		return true;
-	}
-	return false;
+    return isset($_SESSION['loggedIn']) && isset($_SESSION['loggedInUser']);
 }
 
 $loggedIn = isLoggedIn();
 
-?>

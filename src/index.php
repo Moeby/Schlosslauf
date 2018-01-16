@@ -5,7 +5,7 @@ require_once 'sessionCheck.php';
 <head>
     <title>Schlosslauf</title>
     <?php
-    $css = "resources/css/screen.css";
+    $css = 'resources/css/screen.css';
     if (file_exists($css)) {
         echo '<link rel="stylesheet" type="text/css" href="' . $css . '" />';
     } else {
@@ -18,14 +18,14 @@ require_once 'sessionCheck.php';
 
 <div id="kopf">
     <?PHP
-    include "view/kopf.php";
+    include 'view/kopf.php';
     ?>
 </div>
 
 <div id="inhalt_links">
     <?PHP
     if ($loggedIn) {
-        include "view/navigation.php";
+        include 'view/navigation.php';
     }
     ?>
 </div>
@@ -34,17 +34,17 @@ require_once 'sessionCheck.php';
 <div id="inhalt_mitte">
     <?PHP
     if ($loggedIn) {
-        if (isset($_GET["inhalt_mitte"])) {
+        if (isset($_GET['inhalt_mitte'])) {
             $inhalt_mitte = htmlspecialchars($_GET['inhalt_mitte']);
-            include($inhalt_mitte);
+            include $inhalt_mitte;
         } else {
-            include("view/home.html");
+            include 'view/home.html';
         }
     } else {
-        if (isset($_GET["inhalt_mitte"]) && "registration_form.php" === ($_GET["inhalt_mitte"])) {
-            include("view/registration_form.php");
+        if (isset($_GET['inhalt_mitte']) && 'registration_form.php' === $_GET['inhalt_mitte']) {
+            include 'view/registration_form.php';
         } else {
-            include("view/login_form.php");
+            include 'view/login_form.php';
         }
     }
     ?>

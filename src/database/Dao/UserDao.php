@@ -1,19 +1,18 @@
 <?php
 if(file_exists('../database/DB.php')){
-    require_once ('../database/DB.php');
-    require_once ('../database/Dataclasses/User.php');
-    require_once ('../database/Dao/CountryDao.php');
-    require_once ('../database/Dao/LanguageDao.php');
-    require_once ('../database/Dao/GroupDao.php');
-    require_once ('../database/Dataclasses/Group.php');
+    require_once '../database/DB.php';
+    require_once '../database/Dataclasses/User.php';
+    require_once '../database/Dao/CountryDao.php';
+    require_once '../database/Dao/LanguageDao.php';
+    require_once '../database/Dao/GroupDao.php';
+    require_once '../database/Dataclasses/Group.php';
 }else {
-    //TODO: check where the file is called and add require one
-    require_once ('database/DB.php');
-    require_once ('database/Dataclasses/User.php');
-    require_once ('database/Dao/CountryDao.php');
-    require_once ('database/Dao/LanguageDao.php');
-    require_once ('database/Dao/GroupDao.php');
-    require_once ('database/Dataclasses/Group.php');
+    require_once 'database/DB.php';
+    require_once 'database/Dataclasses/User.php';
+    require_once 'database/Dao/CountryDao.php';
+    require_once 'database/Dao/LanguageDao.php';
+    require_once 'database/Dao/GroupDao.php';
+    require_once 'database/Dataclasses/Group.php';
 }
 
 $db = new DB();
@@ -35,7 +34,7 @@ class UserDao
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
 
-        if($result['id'] !== null){
+        if(null !== $result['id']){
             $user = new User();
             $country = $countryDao->getCountryById($result['country_fk']);
             $language = $languageDao->getLanguageById($result['language_fk']);
@@ -64,7 +63,6 @@ class UserDao
     }
 
     public function newUser($username, $password, $salt, $name, $first_name, $email, $street, $location, $area_code, $country, $language){
-        //TODO: check if wothout admin code the instert is still working
         global $con;
         $admin_code = 0;
         $group = null;
@@ -104,8 +102,7 @@ class UserDao
         if(!$sth->execute()){
             return null;
         }
-        $insert_id = $con->lastInsertId();
-        return $insert_id;
+        return $con->lastInsertId();
     }
 
     public function getAllUsers(){

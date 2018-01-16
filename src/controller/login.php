@@ -4,13 +4,13 @@ if(session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if(file_exists('../database/Dao/UserDao.php')){
-    require_once('../database/Dao/UserDao.php');
-    require_once('../database/Dao/CountryDao.php');
-    require_once('../database/Dataclasses/Country.php');
+    require_once '../database/Dao/UserDao.php';
+    require_once '../database/Dao/CountryDao.php';
+    require_once '../database/Dataclasses/Country.php';
 } else{
-    require_once('database/Dao/UserDao.php');
-    require_once('database/Dao/CountryDao.php');
-    require_once('database/Dataclasses/Country.php');
+    require_once 'database/Dao/UserDao.php';
+    require_once 'database/Dao/CountryDao.php';
+    require_once 'database/Dataclasses/Country.php';
 }
 
 $userDao = new UserDao();
@@ -20,7 +20,7 @@ if (isset($_POST['username'])) {
     $password = htmlspecialchars($_POST['password']);
     $user = $userDao->getUserByName($username);
 
-    if($user !== null){
+    if(null !== $user){
         $salt = $user->getSalt();
         $options = [
             'salt' => $salt
@@ -30,26 +30,24 @@ if (isset($_POST['username'])) {
             $_SESSION['loggedInUser'] = $username;
             echo $_SESSION['loggedIn'].':'.$_SESSION['loggedInUser'];
             if(file_exists('../index.php')){
-                echo 'file..';
-                require_once('../index.php');
+                require_once '../index.php';
             } else {
-                echo 'file';
-                require_once('index.php');
+                require_once 'index.php';
             }
         } else {
             echo 'Fail. Password incorrect.';
             if(file_exists('../index.php')){
-                require_once('../index.php');
+                require_once '../index.php';
             } else {
-                require_once('index.php');
+                require_once 'index.php';
             }
         }
     } else {
         echo 'Fail.No user with this username exits.';
         if(file_exists('../index.php')){
-            require_once('../index.php');
+            require_once '../index.php';
         } else {
-            require_once('index.php');
+            require_once 'index.php';
         }
     }
 }

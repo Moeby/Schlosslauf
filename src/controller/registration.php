@@ -4,6 +4,7 @@ if(session_status() == PHP_SESSION_NONE) {
 }
 require_once('../database/Dao/UserDao.php');
 
+
 $userDao = new UserDao();
 $languageDao = new LanguageDao();
 $countryDao = new CountryDao();
@@ -19,7 +20,7 @@ if (isset($_POST['username'])) {
         if (!isset($_POST['username']) || !isset($_POST['password']) || !isset($_POST['Name']) || !isset($_POST['Vorname'])
             || !isset($_POST['Strasse']) || !isset($_POST['PLZ']) || !isset($_POST['Mail'])
             || !isset($_POST['Land']) || !isset($_POST['sprache']) || !isset($_POST['Ort'])) {
-            echo "Fehlende Informationen.";
+            echo 'Fehlende Informationen.';
         } else {
             //TODO: check email format
             $password = htmlspecialchars($_POST['password']);
@@ -53,7 +54,7 @@ if (isset($_POST['username'])) {
                 $_SESSION['loggedInUser'] = $username;
                 header('Location: /Schlosslauf/src/index.php?');
             } else {
-                echo "Registrierung fehlgeschlagen.";
+                echo 'Registrierung fehlgeschlagen.';
                 //TODO: check what is necessary
                 if(file_exists('index.php')){
                     header('index.php');
@@ -63,6 +64,6 @@ if (isset($_POST['username'])) {
             }
         }
     } else {
-        echo "Benutzername bereits in Verwendung.";
+        echo 'Benutzername bereits in Verwendung.';
     }
 }

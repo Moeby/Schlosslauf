@@ -1,13 +1,13 @@
 <?php
 require_once 'sessionCheck.php';
 if (file_exists('../database/Dao/UserDao.php')) {
-    require_once('../database/Dao/UserDao.php');
-    require_once('../database/Dao/CountryDao.php');
-    require_once('../database/Dataclasses/Country.php');
+    require_once '../database/Dao/UserDao.php';
+    require_once '../database/Dao/CountryDao.php';
+    require_once '../database/Dataclasses/Country.php';
 } else {
-    require_once('database/Dao/UserDao.php');
-    require_once('database/Dao/CountryDao.php');
-    require_once('database/Dataclasses/Country.php');
+    require_once 'database/Dao/UserDao.php';
+    require_once 'database/Dao/CountryDao.php';
+    require_once 'database/Dataclasses/Country.php';
 }
 
 $loggedInUsername = $_SESSION['loggedInUser'];
@@ -60,7 +60,7 @@ if ($loggedInUser->getAdminCode()) {
                 </tr>";
         }
     }
-    echo "</table>";
+    echo '</table>';
 } else {
-    echo "<h1>Keine Berechtigung für diese Seite</h1>";
+    echo '<h1>Keine Berechtigung für diese Seite</h1>';
 }

@@ -1,11 +1,11 @@
 <?php
 if(file_exists('../database/DB.php')){
-    require_once ('../database/DB.php');
-    require_once ('../database/Dataclasses/Language.php');
+    require_once '../database/DB.php';
+    require_once '../database/Dataclasses/Language.php';
 }else {
     //TODO: check where the file is called and add require one
-    require_once ('database/DB.php');
-    require_once ('database/Dataclasses/Language.php');
+    require_once 'database/DB.php';
+    require_once 'database/Dataclasses/Language.php';
 }
 
 $db = new DB();
@@ -19,9 +19,8 @@ class LanguageDao
         $sth->bindParam(':language', $name);
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
-        if($result['id'] !== null){
-            $language = new Language($result['id'], $result['language']);
-            return $language;
+        if(null !== $result['id']){
+            return new Language($result['id'], $result['language']);
         }
         return 1;
     }
@@ -33,9 +32,8 @@ class LanguageDao
         $sth->bindParam(':language_id', $id);
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
-        if($result['id'] !== null){
-            $language = new Language($result['id'], $result['language']);
-            return $language;
+        if(null !== $result['id']){
+            return new Language($result['id'], $result['language']);
         }
         return 1;
     }

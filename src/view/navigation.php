@@ -47,12 +47,11 @@ if ($loggedInUser->getAdminCode()) {
 
 $url = '';
 if (isset($_GET['inhalt_mitte'])) {
-    //TODO: check if htmlspecialchars is necessary
     $aktuell = $_GET['inhalt_mitte'];
     $url = $siteRoot . $aktuell;
 }
 foreach ($menuStruct as $key => $value) {
-    if ($value['root'] === $url) {
+    if ($url === $value['root']) {
         echo '<a  class="fstLevelActive" href=' . $value['root'] . ">$key</a>\n";
     } else {
         echo '<a class="fstLevel" href=' . $value['root'] . ">$key</a>\n";

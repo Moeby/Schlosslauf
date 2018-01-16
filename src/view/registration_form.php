@@ -46,18 +46,18 @@
             <td><select name="Land" required>
                     <?php
                         if(file_exists('../database/Dao/CountryDao.php')){
-                            require_once ('../database/Dao/CountryDao.php');
-                            require_once ('../database/Dataclasses/Country.php');
+                            require_once '../database/Dao/CountryDao.php';
+                            require_once '../database/Dataclasses/Country.php';
                         } else{
-                            require_once ('database/Dao/CountryDao.php');
-                            require_once ('database/Dataclasses/Country.php');
+                            require_once 'database/Dao/CountryDao.php';
+                            require_once 'database/Dataclasses/Country.php';
                         }
                         $country_dao = new CountryDao();
                         $country_list = $country_dao->getAllCountries();
-                        if($country_list === 1){
+                        if(1 === $country_list){
                             echo 'Database connection problem.';
                         } else {
-                            if($country_list !== null) {
+                            if(null !== $country_list) {
                                 foreach ($country_list as $country) {
                                     echo('<option value="'.$country->getCountry().'">'.$country->getCountry().'</option>');
                                 }
@@ -73,18 +73,18 @@
             <td><select name="sprache" required>
                 <?php
                 if(file_exists('../database/Dao/LanguageDao.php')){
-                    require_once ('../database/Dao/LanguageDao.php');
-                    require_once ('../database/Dataclasses/Language.php');
+                    require_once '../database/Dao/LanguageDao.php';
+                    require_once '../database/Dataclasses/Language.php';
                 } else{
-                    require_once ('database/Dao/LanguageDao.php');
-                    require_once ('database/Dataclasses/Language.php');
+                    require_once 'database/Dao/LanguageDao.php';
+                    require_once 'database/Dataclasses/Language.php';
                 }
                 $language_dao = new LanguageDao();
                 $language_list = $language_dao->getAllLanguages();
-                if($language_list === 1){
+                if(1 === $language_list){
                     echo 'Database connection problem.';
                 }else {
-                    if($language_list !== null) {
+                    if(null !== $language_list) {
                         foreach ($language_list as $language) {
                             echo('<option value="'.$language->getLanguage().'">'.$language->getLanguage().'</option>');
                         }
