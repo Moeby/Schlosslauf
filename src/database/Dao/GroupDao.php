@@ -45,12 +45,10 @@ class GroupDao
 
         $sth = $con->prepare('SELECT * FROM `group`');
         if(!$sth->execute()){
-            echo('untilhere');
             return 1;
         } else {
             $sth->setFetchMode(PDO::FETCH_ASSOC);
             while($result = $sth->fetch()) {
-                echo($result['group']);
                 $group_list[] = new Group($result['id'], $result['group']);
             }
         }

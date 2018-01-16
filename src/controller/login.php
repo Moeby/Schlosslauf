@@ -1,6 +1,8 @@
 <?php
 //TODO: check if required
-//session_start();
+if(session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(file_exists('../database/Dao/UserDao.php')){
     require_once('../database/Dao/UserDao.php');
     require_once('../database/Dao/CountryDao.php');
@@ -14,8 +16,6 @@ if(file_exists('../database/Dao/UserDao.php')){
 $userDao = new UserDao();
 
 if (isset($_POST['username'])) {
-//	$username = mysql_real_escape_string($_POST['username']);
-
     $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
     $user = $userDao->getUserByName($username);
@@ -28,9 +28,12 @@ if (isset($_POST['username'])) {
         if($user->getPassword() === password_hash($password, PASSWORD_BCRYPT, $options)){
             $_SESSION['loggedIn'] = 'true';
             $_SESSION['loggedInUser'] = $username;
+            echo $_SESSION['loggedIn'].':'.$_SESSION['loggedInUser'];
             if(file_exists('../index.php')){
+                echo 'file..';
                 require_once('../index.php');
             } else {
+                echo 'file';
                 require_once('index.php');
             }
         } else {
@@ -40,8 +43,6 @@ if (isset($_POST['username'])) {
             } else {
                 require_once('index.php');
             }
-            //header('Location: index.php');
-            //require_once('../index.php');
         }
     } else {
         echo 'Fail.No user with this username exits.';
