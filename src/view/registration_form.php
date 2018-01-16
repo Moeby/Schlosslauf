@@ -97,7 +97,7 @@
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Anmelden"/></td>
+            <td><input type="reset" value="Abbrechen">&nbsp;<input type="submit" value="Anmelden"/></td>
         </tr>
     </table>
 </form>

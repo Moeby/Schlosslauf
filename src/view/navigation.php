@@ -12,13 +12,6 @@ if(file_exists('../database/Dao/UserDao.php')){
 }
 
 $siteRoot = 'index.php?inhalt_mitte=';
-/*$menuStruct = array('Home' => array('root' => $siteRoot . "view\\home.html"),
-    'Schlosslauf' => array('root' => $siteRoot . "view\\beschreibung_form.php"),
-    'Eigenschaften' => array('root' => $siteRoot . "view\\eigenschaften.html"),
-    'Aufgaben' => array('root' => $siteRoot . "view\\aufgaben.html"),
-    'Anmeldung Schlosslauf' => array('root' => $siteRoot . "view\\schlosslauf_form.php"),
-    'Logout' => array('root' => $siteRoot . "controller\\logout.php")
-);*/
 
 $loggedInUsername = $_SESSION['loggedInUser'];
 $userDao = new UserDao();

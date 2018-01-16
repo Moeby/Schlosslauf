@@ -12,7 +12,6 @@ ErrorController::noDirectExecution();*/
 
 class DB {
     private static $host = 'mysql:host=localhost';
-    //TODO: change user
     private static $user = 'root';
     private static $pw = '';
     private static $db = 'schlosslauf';

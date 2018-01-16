@@ -22,7 +22,6 @@ if (isset($_POST['username'])) {
             || !isset($_POST['Land']) || !isset($_POST['sprache']) || !isset($_POST['Ort'])) {
             echo 'Fehlende Informationen.';
         } else {
-            //TODO: check email format
             $password = htmlspecialchars($_POST['password']);
             $name = htmlspecialchars($_POST['Name']);
             $firstName = htmlspecialchars($_POST['Vorname']);
@@ -52,18 +51,26 @@ if (isset($_POST['username'])) {
             if(null !== $user){
                 $_SESSION['loggedIn'] = 'true';
                 $_SESSION['loggedInUser'] = $username;
-                header('Location: /Schlosslauf/src/index.php?');
+                if(file_exists('../index.php')){
+                    header('Location: ../index.php');
+                } else {
+                    header('Location: index.php');
+                }
             } else {
                 echo 'Registrierung fehlgeschlagen.';
-                //TODO: check what is necessary
-                if(file_exists('index.php')){
-                    header('index.php');
-                } else{
-                    header('../index.php');
+                if(file_exists('../index.php')){
+                    header('Location: ../index.php?inhalt_mitte=registration_form.php');
+                } else {
+                    header('Location: index.php?inhalt_mitte=registration_form.php');
                 }
             }
         }
     } else {
         echo 'Benutzername bereits in Verwendung.';
+        if(file_exists('../index.php')){
+            header('Location: ../index.php?inhalt_mitte=registration_form.php');
+        } else {
+            header('Location: index.php?inhalt_mitte=registration_form.php');
+        }
     }
 }

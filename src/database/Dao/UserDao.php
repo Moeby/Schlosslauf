@@ -28,9 +28,10 @@ class UserDao
         global $countryDao;
         global $languageDao;
         global $groupDao;
+        $username_test = htmlspecialchars($username);
 
         $sth = $con->prepare('SELECT * FROM user WHERE username = :username');
-        $sth->bindParam(':username', $username);
+        $sth->bindParam(':username', $username_test);
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
 
@@ -148,7 +149,6 @@ class UserDao
         }
     }
 
-    //TODO: write setgroup
     public function setGroup($group, $user){
         global $con;
 

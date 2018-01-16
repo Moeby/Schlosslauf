@@ -13,9 +13,10 @@ class GroupDao
 {
     public function getGroupByName($name){
         global $con;
+        $name_test = htmlspecialchars($name);
 
-        $sth = $con->prepare('SELECT * FROM `group` WHERE group = :group');
-        $sth->bindParam(':group', htmlspecialchars($name));
+        $sth = $con->prepare('SELECT * FROM `group` WHERE `group` = :group');
+        $sth->bindParam(':group', $name_test);
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         if(null !== $result['id']){
@@ -25,9 +26,10 @@ class GroupDao
     }
     public function getGroupById($id){
         global $con;
+        $id_test = htmlspecialchars($id);
 
         $sth = $con->prepare('SELECT * FROM `group` WHERE id = :group_id');
-        $sth->bindParam(':group_id', $id);
+        $sth->bindParam(':group_id', $id_test);
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         if(null !== $result['id']){

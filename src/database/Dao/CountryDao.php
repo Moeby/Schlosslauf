@@ -13,9 +13,10 @@ class CountryDao
 {
     public function getCountryByName($name){
         global $con;
+        $name_test = htmlspecialchars($name);
 
         $sth = $con->prepare('SELECT * FROM country WHERE country = :country');
-        $sth->bindParam(':country', $name);
+        $sth->bindParam(':country', $name_test);
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         if(null !== $result['id']){
@@ -25,9 +26,10 @@ class CountryDao
     }
     public function getCountryById($id){
         global $con;
+        $id_test = htmlspecialchars($id);
 
         $sth = $con->prepare('SELECT * FROM country WHERE id = :counrty_id');
-        $sth->bindParam(':counrty_id', $id);
+        $sth->bindParam(':counrty_id', $id_test);
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         if(null !== $result['id']){
