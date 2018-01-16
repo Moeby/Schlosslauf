@@ -70,7 +70,7 @@
         </tr>
         <tr>
             <td>Sprache:</td>
-            <td>
+            <td><select name="sprache" required>
                 <?php
                 if(file_exists('../database/Dao/LanguageDao.php')){
                     require_once ('../database/Dao/LanguageDao.php');
@@ -81,22 +81,19 @@
                 }
                 $language_dao = new LanguageDao();
                 $language_list = $language_dao->getAllLanguages();
-                //TODO: better error handling
                 if($language_list === 1){
                     echo 'Database connection problem.';
                 }else {
                     if($language_list !== null) {
-                        echo('<table>');
                         foreach ($language_list as $language) {
-                            echo('<tr><td><input type="radio" name="sprache" value="'.$language->getLanguage().'">'.$language->getLanguage().'</td></tr>');
+                            echo('<option value="'.$language->getLanguage().'">'.$language->getLanguage().'</option>');
                         }
-                        echo('</table>');
                     } else{
                         echo 'Problem Language';
                     }
                 }
                 ?>
-            </td>
+                </select></td>
         </tr>
         <tr>
             <td></td>

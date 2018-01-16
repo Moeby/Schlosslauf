@@ -6,6 +6,7 @@ if(!file_exists('sessionCheck.php')) {
         die();
     }
 }
+//TODO: implement check if user has already registrated for schlosslauf (if group != null)
 //TODO: check which fields are no longer used
 ?>
 
@@ -74,8 +75,9 @@ if(!file_exists('sessionCheck.php')) {
 
 <h2>Anmeldung Schlosslauf</h2>
 
-<form name="Formular" action="../controller/save.php"
-      method="post" onsubmit="return chkFormular()">
+<!--<form name="Formular" action="../controller/schlosslauf.php"
+      method="post" onsubmit="return chkFormular()">-->
+<form name="Formular" action="../controller/schlosslauf.php" method="post">
     <p>
         Wählen Sie hier die Länge der Strecke, die Sie gerne laufen würden </br> und melden Sie Sich direkt zum Schlosslauf an.
     </p>
