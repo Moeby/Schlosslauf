@@ -63,12 +63,10 @@ if(!file_exists('sessionCheck.php')) {
             return false;
         }
         if (!document.Formular.Deutsch.checked && !document.Formular.Franzoesisch.checked && !document.Formular.Italienisch.checked && !document.Formular.Englisch.checked) {
-            alert("Bitte Sprache w�hlen!");
+            alert("Bitte Sprache waehlen!");
             document.Formular.Deutsch.focus();
             return false;
         }
-
-
     }
 </script>
 </head>
@@ -76,57 +74,38 @@ if(!file_exists('sessionCheck.php')) {
 
 <h2>Anmeldung Schlosslauf</h2>
 
-<form name="Formular" action="save.php"
+<form name="Formular" action="../controller/save.php"
       method="post" onsubmit="return chkFormular()">
+    <p>
+        Wählen Sie hier die Länge der Strecke, die Sie gerne laufen würden </br> und melden Sie Sich direkt zum Schlosslauf an.
+    </p>
     <table>
-        <tr>
-            <td>Name:</td>
-            <td><input type="text" name="Name"></td>
-        </tr>
-        <tr>
-            <td>Vorname:</td>
-            <td><input type="text" name="Vorname"></td>
-        </tr>
-        <tr>
-            <td>Strasse:</td>
-            <td><input type="text" name="Strasse"></td>
-        </tr>
-        <tr>
-            <td>Ort:</td>
-            <td><input type="text" name="Ort"></td>
-        </tr>
-        <tr>
-            <td>PLZ:</td>
-            <td><input type="text" name="PLZ"></td>
-        </tr>
-        <tr>
-            <td>E-Mail:</td>
-            <td><input type="text" name="Mail"></td>
-        </tr>
         <tr>
             <td>Gruppe:</td>
             <td><select name="Gruppe">
-                    <option value="a">A</option>
-                    <option value="b">B</option>
-                    <option value="c">C</option>
-                </select></td>
-        </tr>
-        <tr>
-            <td>Land:</td>
-            <td><select name="Land">
-                    <option value="schweiz">Schweiz</option>
-                    <option value="deutschland">Deutschland</option>
-                    <option value="italien">Italien</option>
-                    <option value="frankreich">Frankreich</option>
-                </select></td>
-        </tr>
-        <tr>
-            <td>Sprache:</td>
-            <td><input type="checkbox" value="Deutsch" name="Deutsch">Deutsch
-                <input type="checkbox" value="Franzoesisch" name="Franzoesisch">Franz&ouml;sisch
-                <input type="checkbox" value="Italienisch" name="Italienisch">Italienisch
-                <input type="checkbox" value="Englisch" name="Englisch">Englisch
-            </td>
+                <?php
+                if(file_exists('../database/Dao/GroupDao.php')){
+                    require_once('../database/Dao/GroupDao.php');
+                    require_once('../database/Dataclasses/Group.php');
+                } else{
+                    require_once ('database/Dao/GroupDao.php');
+                    require_once ('database/Dataclasses/Group.php');
+                }
+                $group_dao = new GroupDao();
+                $group_list = $group_dao->getAllGroups();
+                if($group_list === 1){
+                    echo 'Database connection problem.';
+                } else{
+                    if($group_list !== null) {
+                        foreach ($group_list as $group) {
+                            echo('<option value="'.$group->getGroup().'">'.$group->getGroup().'</option>');
+                        }
+                    } else{
+                        echo 'Problem Language';
+                    }
+                }
+                ?>
+            </select></td>
         </tr>
         <tr>
             <td><input type="submit" value="Absenden"></td>
