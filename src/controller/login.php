@@ -33,9 +33,6 @@ if (isset($_POST['username'])) {
             } else {
                 require_once('index.php');
             }
-            //echo 'Success.';
-            //header('Location: schlosslauf_form.php');
-            //require_once('C:/xampp/htdocs/Schlosslauf/src/index.php');
         } else {
             echo 'Fail. Password incorrect.';
             if(file_exists('../index.php')){

@@ -28,7 +28,7 @@ if ($loggedInUser->getAdminCode()) {
         'Vorwort' => array('root' => $siteRoot . "view\\vorwort.html"),
         'Eigenschaften' => array('root' => $siteRoot . "view\\eigenschaften.html"),
         'Aufgaben' => array('root' => $siteRoot . "view\\aufgaben.html"),
-        'Anmeldung Schlosslauf' => array('root' => $siteRoot . "controller\\schlosslauf.php"),
+        'Anmeldung Schlosslauf' => array('root' => $siteRoot . "view\\schlosslauf_form.php"),
         'Anmeldungsübersicht' => array('root' => $siteRoot . "controller\\uebersicht.php"),
         'Logout' => array('root' => $siteRoot . "controller\\logout.php")
     );
@@ -37,7 +37,7 @@ if ($loggedInUser->getAdminCode()) {
         'Vorwort' => array('root' => $siteRoot . "view\\vorwort.html"),
         'Eigenschaften' => array('root' => $siteRoot . "view\\eigenschaften.html"),
         'Aufgaben' => array('root' => $siteRoot . "view\\aufgaben.html"),
-        'Anmeldung Schlosslauf' => array('root' => $siteRoot . "controller\\schlosslauf.php"),
+        'Anmeldung Schlosslauf' => array('root' => $siteRoot . "view\\schlosslauf_form.php"),
         'Logout' => array('root' => $siteRoot . "controller\\logout.php")
     );
 }
