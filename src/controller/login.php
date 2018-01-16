@@ -1,6 +1,4 @@
 <?php
-//TODO: check if required
-//session_start();
 if(file_exists('../database/Dao/UserDao.php')){
     require_once('../database/Dao/UserDao.php');
     require_once('../database/Dao/CountryDao.php');
@@ -14,13 +12,11 @@ if(file_exists('../database/Dao/UserDao.php')){
 $userDao = new UserDao();
 
 if (isset($_POST['username'])) {
-//	$username = mysql_real_escape_string($_POST['username']);
-
     $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
     $user = $userDao->getUserByName($username);
 
-    if($user !== null){
+    if(null !== $user){
         $salt = $user->getSalt();
         $options = [
             'salt' => $salt
@@ -40,8 +36,6 @@ if (isset($_POST['username'])) {
             } else {
                 require_once('index.php');
             }
-            //header('Location: index.php');
-            //require_once('../index.php');
         }
     } else {
         echo 'Fail.No user with this username exits.';

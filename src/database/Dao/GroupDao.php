@@ -19,7 +19,7 @@ class GroupDao
         $sth->bindParam(':group', htmlspecialchars($name));
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
-        if($result['id'] !== null){
+        if(null !== $result['id']){
             $group = new Group($result['id'], $result['group']);
             return $group;
         }
@@ -32,7 +32,7 @@ class GroupDao
         $sth->bindParam(':group_id', $id);
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
-        if($result['id'] !== null){
+        if(null !== $result['id']){
             $group = new Group($result['id'], $result['group']);
             return $group;
         }

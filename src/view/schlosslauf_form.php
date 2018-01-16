@@ -95,10 +95,10 @@ if(!file_exists('sessionCheck.php')) {
                 }
                 $group_dao = new GroupDao();
                 $group_list = $group_dao->getAllGroups();
-                if($group_list === 1){
+                if(1 === $group_list){
                     echo 'Database connection problem.';
                 } else{
-                    if($group_list !== null) {
+                    if(null !== $group_list) {
                         foreach ($group_list as $group) {
                             echo('<option value="'.$group->getGroup().'">'.$group->getGroup().'</option>');
                         }

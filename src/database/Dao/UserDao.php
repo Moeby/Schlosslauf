@@ -35,7 +35,7 @@ class UserDao
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
 
-        if($result['id'] !== null){
+        if(null !== $result['id']){
             $user = new User();
             $country = $countryDao->getCountryById($result['country_fk']);
             $language = $languageDao->getLanguageById($result['language_fk']);

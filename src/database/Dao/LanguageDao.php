@@ -19,7 +19,7 @@ class LanguageDao
         $sth->bindParam(':language', $name);
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
-        if($result['id'] !== null){
+        if(null !== $result['id']){
             $language = new Language($result['id'], $result['language']);
             return $language;
         }
@@ -33,7 +33,7 @@ class LanguageDao
         $sth->bindParam(':language_id', $id);
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
-        if($result['id'] !== null){
+        if(null !== $result['id']){
             $language = new Language($result['id'], $result['language']);
             return $language;
         }

@@ -3,7 +3,6 @@ if(file_exists('../database/DB.php')){
     require_once ('../database/DB.php');
     require_once ('../database/Dataclasses/Country.php');
 }else {
-    //TODO: check where the file is called and add require one
     require_once ('database/DB.php');
     require_once ('database/Dataclasses/Country.php');
 }
@@ -19,7 +18,7 @@ class CountryDao
         $sth->bindParam(':country', $name);
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
-        if($result['id'] !== null){
+        if(null !== $result['id']){
             $country = new Country($result['id'], $result['country']);
             return $country;
         }
@@ -32,7 +31,7 @@ class CountryDao
         $sth->bindParam(':counrty_id', $id);
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
-        if($result['id'] !== null){
+        if(null !== $result['id']){
             $country = new Country($result['id'], $result['country']);
             return $country;
         }
@@ -44,15 +43,11 @@ class CountryDao
         $country_list = array();
 
         $sth = $con->prepare('SELECT * FROM country');
-        //$sth = $con->prepare('SELECT id FROM country WHERE 1 = ?');
-        //$index = 1;
-        //$sth->bindParam('i', $index);
         if(!$sth->execute()){
             return 1;
         } else {
             $sth->setFetchMode(PDO::FETCH_ASSOC);
             while($result = $sth->fetch()) {
-                //echo($result['id'].$result['country']);
                 $country_list[] = new Country($result['id'], $result['country']);
             }
         }
