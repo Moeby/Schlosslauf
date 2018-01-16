@@ -19,9 +19,10 @@ $siteRoot = 'index.php?inhalt_mitte=';
     'Logout' => array('root' => $siteRoot . "controller\\logout.php")
 );*/
 
-$loggedInUsername = $_SESSION['loggedInUser'];
+/*$loggedInUsername = $_SESSION['loggedInUser'];
 $userDao = new UserDao();
-$loggedInUser = $userDao->getUserByName($loggedInUsername);
+$loggedInUser = $userDao->getUserByName($loggedInUsername);*/
+$loggedInUser = $_SESSION['loggedInUser'];
 
 if ($loggedInUser->getAdminCode()) {
     $menuStruct = array('Home' => array('root' => $siteRoot . "view\\home.html"),
