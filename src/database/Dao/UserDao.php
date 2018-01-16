@@ -5,6 +5,7 @@ if(file_exists('../database/DB.php')){
     require_once ('../database/Dao/CountryDao.php');
     require_once ('../database/Dao/LanguageDao.php');
     require_once ('../database/Dao/GroupDao.php');
+    require_once ('../database/Dataclasses/Group.php');
 }else {
     //TODO: check where the file is called and add require one
     require_once ('database/DB.php');
@@ -12,6 +13,7 @@ if(file_exists('../database/DB.php')){
     require_once ('database/Dao/CountryDao.php');
     require_once ('database/Dao/LanguageDao.php');
     require_once ('database/Dao/GroupDao.php');
+    require_once ('database/Dataclasses/Group.php');
 }
 
 $db = new DB();
@@ -144,5 +146,24 @@ class UserDao
             }
             return $user_list;
         }
+    }
+
+    //TODO: write setgroup
+    public function setGroup($group, $user){
+        global $con;
+
+        $sth = $con->prepare('UPDATE user SET group_fk = :group_fk WHERE username = :username');
+        $username = $user->getUsername();
+        $group_fk = $group->getId();
+        $sth->bindParam(':group_fk', $group_fk);
+        $sth->bindParam(':username', $username);
+
+        if($sth->execute()){
+            $affected_rows = $sth->rowCount();
+            if($affected_rows > 0){
+                return $affected_rows;
+            }
+        }
+        return null;
     }
 }

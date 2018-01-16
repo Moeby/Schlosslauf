@@ -49,9 +49,10 @@ if (isset($_POST['username'])) {
             // Create new user
             $languageObj = $languageDao->getLanguageByName($language);
             $countryObj = $countryDao->getCountryByName($country);
-            if(null !== $userDao->newUser($username, $hashedPassword, $salt, $name, $firstName, $mail, $street, $location, $cityCode, $countryObj, $languageObj)){
+            $user = $userDao->newUser($username, $hashedPassword, $salt, $name, $firstName, $mail, $street, $location, $cityCode, $countryObj, $languageObj);
+            if(null !== $user){
                 $_SESSION['loggedIn'] = 'true';
-                $_SESSION['loggedInUser'] = $username;
+                $_SESSION['loggedInUser'] = $user;
                 if(file_exists('index.php')){
                     header('Location: index.php');
                 } else{
