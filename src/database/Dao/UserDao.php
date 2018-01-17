@@ -162,6 +162,8 @@ class UserDao
             $affected_rows = $sth->rowCount();
             if($affected_rows > 0){
                 return $affected_rows;
+            } else{
+                return 0;
             }
         }
         return null;

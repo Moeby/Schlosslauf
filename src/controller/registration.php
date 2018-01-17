@@ -4,7 +4,6 @@ if(session_status() == PHP_SESSION_NONE) {
 }
 require_once('../database/Dao/UserDao.php');
 
-
 $userDao = new UserDao();
 $languageDao = new LanguageDao();
 $countryDao = new CountryDao();
@@ -20,7 +19,13 @@ if (isset($_POST['username'])) {
         if (!isset($_POST['username']) || !isset($_POST['password']) || !isset($_POST['Name']) || !isset($_POST['Vorname'])
             || !isset($_POST['Strasse']) || !isset($_POST['PLZ']) || !isset($_POST['Mail'])
             || !isset($_POST['Land']) || !isset($_POST['sprache']) || !isset($_POST['Ort'])) {
-            echo 'Fehlende Informationen.';
+            //echo 'Fehlende Angaben.';
+            if(file_exists('../index.php')){
+                header('Location: ../index.php?inhalt_mitte=registration_form.php&error=3');
+            } else {
+                header('Location: index.php?inhalt_mitte=registration_form.php&error=3');
+            }
+
         } else {
             $password = htmlspecialchars($_POST['password']);
             $name = htmlspecialchars($_POST['Name']);
@@ -57,20 +62,18 @@ if (isset($_POST['username'])) {
                     header('Location: index.php');
                 }
             } else {
-                echo 'Registrierung fehlgeschlagen.';
                 if(file_exists('../index.php')){
-                    header('Location: ../index.php?inhalt_mitte=registration_form.php');
+                    header('Location: ../index.php?inhalt_mitte=registration_form.php&error=4');
                 } else {
-                    header('Location: index.php?inhalt_mitte=registration_form.php');
+                    header('Location: index.php?inhalt_mitte=registration_form.php&error=4');
                 }
             }
         }
     } else {
-        echo 'Benutzername bereits in Verwendung.';
         if(file_exists('../index.php')){
-            header('Location: ../index.php?inhalt_mitte=registration_form.php');
+            header('Location: ../index.php?inhalt_mitte=registration_form.php&error=5');
         } else {
-            header('Location: index.php?inhalt_mitte=registration_form.php');
+            header('Location: index.php?inhalt_mitte=registration_form.php&error=5');
         }
     }
 }

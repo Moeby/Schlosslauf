@@ -1,13 +1,22 @@
 <?php
+if(!file_exists('sessionCheck.php')) {
+    require_once '../sessionCheck.php';
+    if(!$loggedIn) {
+        header('Location: ../index.php?10');
+        die();
+    }
+} else{
+    require_once 'sessionCheck.php';
+}
 if(file_exists('../database/Dao/UserDao.php')){
-    require_once('../database/Dao/UserDao.php');
-    require_once('../database/Dao/CountryDao.php');
-    require_once('../database/Dataclasses/Country.php');
+    require_once '../database/Dao/UserDao.php';
+    require_once '../database/Dao/CountryDao.php';
+    require_once '../database/Dataclasses/Country.php';
     require_once '../sessionCheck.php';
 } else{
-    require_once('database/Dao/UserDao.php');
-    require_once('database/Dao/CountryDao.php');
-    require_once('database/Dataclasses/Country.php');
+    require_once 'database/Dao/UserDao.php';
+    require_once 'database/Dao/CountryDao.php';
+    require_once 'database/Dataclasses/Country.php';
     require_once 'sessionCheck.php';
 }
 

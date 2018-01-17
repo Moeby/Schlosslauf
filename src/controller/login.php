@@ -27,26 +27,23 @@ if (isset($_POST['username'])) {
         if($user->getPassword() === password_hash($password, PASSWORD_BCRYPT, $options)){
             $_SESSION['loggedIn'] = 'true';
             $_SESSION['loggedInUser'] = $username;
-            //echo $_SESSION['loggedIn'].':'.$_SESSION['loggedInUser'];
             if(file_exists('../index.php')){
                 header('Location: ../index.php');
             } else {
                 header('Location: index.php');
             }
         } else {
-            echo 'Fail. Password incorrect.';
             if(file_exists('../index.php')){
-                header('Location: ../index.php');
+                header('Location: ../index.php?error=1');
             } else {
-                header('Location: index.php');
+                header('Location: index.phperror=1');
             }
         }
     } else {
-        echo 'Fail.No user with this username exits.';
         if(file_exists('../index.php')){
-            header('Location: ../index.php');
+            header('Location: ../index.php?error=2');
         } else {
-            header('Location: index.php');
+            header('Location: index.php?error=2');
         }
     }
 }

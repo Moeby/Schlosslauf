@@ -2,9 +2,11 @@
 if(!file_exists('sessionCheck.php')) {
     require_once '../sessionCheck.php';
     if(!$loggedIn) {
-        require_once '../index.php';
+        header('Location: ../index.php?10');
         die();
     }
+} else{
+    require_once 'sessionCheck.php';
 }
 
 ?>
@@ -21,28 +23,28 @@ if(file_exists('../controller/schlosslauf.php')){
 
 <?php
     if(file_exists('../database/Dao/GroupDao.php')){
-        require_once('../database/Dao/GroupDao.php');
-        require_once('../database/Dao/UserDao.php');
-        require_once('../database/Dataclasses/Group.php');
-        require_once('../database/Dataclasses/User.php');
+        require_once '../database/Dao/GroupDao.php';
+        require_once '../database/Dao/UserDao.php';
+        require_once '../database/Dataclasses/Group.php';
+        require_once '../database/Dataclasses/User.php';
     } else{
-        require_once ('database/Dao/GroupDao.php');
-        require_once ('database/Dao/UserDao.php');
-        require_once ('database/Dataclasses/Group.php');
-        require_once ('database/Dataclasses/User.php');
-    }
+        require_once 'database/Dao/GroupDao.php';
+        require_once 'database/Dao/UserDao.php';
+        require_once 'database/Dataclasses/Group.php';
+        require_once 'database/Dataclasses/User.php';
+   }
 
     $user_dao = new UserDao();
     $user = $user_dao->getUserByName($_SESSION['loggedInUser']);
     $group_dao = new GroupDao();
     $group_list = $group_dao->getAllGroups();
-    if($user !== null && $group_list !== 1){
+    if(null !== $user && 1 !== $group_list  ){
         $user_group = $user->getGroup();
-        if($user_group !== null){
+        if(null !== $user_group){
             echo '<p>Sie haben Sich für den Schlosslauf bereits in der Gruppe '.$user_group->getGroup().' angemeldet. </p>
                     <table>
                         <tr>
-                            <td>Gruppe:</td>
+                            <td>Gruppe ändern:</td>
                             <td><select name="Gruppe">';
             foreach ($group_list as $group) {
                 echo '<option value="'.$group->getGroup().'">'.$group->getGroup().'</option>';
@@ -73,7 +75,9 @@ if(file_exists('../controller/schlosslauf.php')){
         }
 
     } else {
-        echo 'Database problem.';
+        $error_dao = new ErrorDao();
+        $error = $error_dao->getErrorNameById(11);
+        echo '<h1>Error: '.$error.'</h1>';
     }
 ?>
 </form>

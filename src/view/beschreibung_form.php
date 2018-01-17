@@ -9,7 +9,7 @@
     Anfangs- und Endpunkt sind im Herzen der Altstadt von Neuenburg, wo sich auch viele Zuschauer versammeln. Dort stellen auch jedes Jahr verschiedenste Essenstände ihre Zelte auf, damit die Verpflegung nicht zu kurz kommt.
 </p></br>
 <p>
-    <a href="index.php?inhalt_mitte=view/schlosslauf_form.php">Melden Sie Sich auch an!</a>
+    <a href="index.php?inhalt_mitte=view\schlosslauf_form.php">Melden Sie Sich auch an!</a>
     Wir freuen uns über jede Anmeldung.
 </p>
 <p>
